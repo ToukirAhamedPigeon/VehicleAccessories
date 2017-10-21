@@ -23,7 +23,7 @@ class userModel extends MY_Model{
 	
 	public function addUser($array)
 	{
-		
+		return $this->db->insert('user',$array);
 	}
 	
 	public function editUser($array)
@@ -31,9 +31,10 @@ class userModel extends MY_Model{
 		
 	}
 	
-	public function getUser($id)
+	public function getUser($username)
 	{
-		
+		$q =$this->db->select(['id'])->where('username',$username)->get('user');
+		return $q->row();
 	}
 	
 		

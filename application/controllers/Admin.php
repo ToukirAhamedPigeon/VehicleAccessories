@@ -149,4 +149,9 @@ class Admin extends MY_Controller {
 	{
 		
 	}
+	
+	public function confirmOrganization()
+	{
+		
+	}
 }

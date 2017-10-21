@@ -1,0 +1,79 @@
+
+/*universal*/
+
+.font{
+	font-family:Lucida Grande, Lucida Sans Unicode, Lucida Sans, DejaVu Sans, Verdana," sans-serif";
+	font-size:18px;
+}
+.fontsmall{font-size: 14px;}
+.backgray{
+	background: #F6F6F6;
+}
+.formmarpad{
+	margin: 25px ;
+	padding: 25px;
+}
+.imagebox{
+	margin-bottom: 15px;
+	border:8px solid #ffffff;
+}
+.imagebox:hover{
+	margin-bottom: 15px;
+	border:8px solid #ffffff;
+	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.shadow{
+	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.invisible{
+	visibility: none;
+}
+.center
+{
+	text-align: center;
+}
+.right
+{
+	text-align: right;
+}
+
+legend{
+	font-size: 28px;
+	color: crimson;
+	text-align: right;
+}
+
+/*logo*/
+.logo{
+	background: #3b3b3b;
+	padding: 3px;
+	text-align: left;
+	color:#ffffff;
+	overflow: hidden;
+    position: fixed; 
+    top: 0;
+    width: 100%; 
+}
+
+.topmargin{
+	margin-top: 80px; 
+}
+
+.logolink{
+	color: white;
+	text-decoration: none;
+	text-align: right;
+}
+
+.logolink:hover{
+	color:#B9B9B9;
+	text-decoration: none;
+}
+
+/*footer*/
+.footer{
+	background: #3b3b3b;
+	padding: 20px;
+	text-align: center;
+	color:#ffffff;
+}

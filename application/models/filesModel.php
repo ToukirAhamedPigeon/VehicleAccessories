@@ -9,14 +9,10 @@ class filesModel extends MY_Model{
 	{
 		
 	}
-	private function createPath($fileholder,$holdertype,$filestatus)
-	{
-		
-	}
 	
-	public function uploadFile($fileholder,$holdertype,$filestatus,$file)
+	public function uploadFile($array)
 	{
-		
+		return $this->db->insert('files',$array);
 	}
 	public function updateFile($fileid,$file)
 	{
