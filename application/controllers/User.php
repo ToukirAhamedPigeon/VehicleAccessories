@@ -38,6 +38,8 @@ class User extends MY_Controller {
 		 $post=$this->input->post();
 		 unset($post['submit']);
 		  unset($post['confirmpassword']);
+		  unset($post['submit']);
+		 // unset($post['labelcheckconfpass']);
 		  $filename=rand(100,999).$post['username'].getDateTime(2);
          $config=['upload_path'=> './assets/files/profile',
 				'allowed_types'=>'jpg|gif|png|jpeg',

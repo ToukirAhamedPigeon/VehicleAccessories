@@ -6,6 +6,7 @@
 	font-size:18px;
 }
 .fontsmall{font-size: 14px;}
+
 .backgray{
 	background: #F6F6F6;
 }
@@ -36,11 +37,25 @@
 {
 	text-align: right;
 }
+.errrow
+{
+	font-size: 12px;
+	color:crimson;
+	margin-top: -50px;
+}
+.white{
+	color: white;
+	opcity:0.0;
+}
 
 legend{
 	font-size: 28px;
 	color: crimson;
 	text-align: right;
+}
+p.noerror
+{
+	color:#f6f6f6;
 }
 
 /*logo*/

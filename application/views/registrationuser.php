@@ -40,6 +40,10 @@
 		  </select>
       </div>
     </div>
+    <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="titleErr" >*</p></div>
+    </div>
     
     <div class="form-group">
       <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
@@ -47,12 +51,20 @@
         <?php echo form_input(['name'=>'firstname','id'=>'inputFirstName','class'=>'form-control','placeholder'=>'FirstName','value'=>set_value('firstname')]);?>
       </div>
     </div>
+    <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="firstnameErr" >*</p></div>
+    </div>
     
      <div class="form-group">
       <label for="inputLastName" class="col-lg-2 control-label">Last Name</label>
       <div class="col-lg-10">
         <?php echo form_input(['name'=>'lastname','id'=>'inputLastName','class'=>'form-control','placeholder'=>'LastName','value'=>set_value('lastname')]);?>
       </div>
+    </div> 
+    <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="lastnameErr" >*</p></div>
     </div>
     
       <div class="form-group">
@@ -61,12 +73,20 @@
         <?php echo form_input(['name'=>'username','id'=>'inputUserName','class'=>'form-control','placeholder'=>'UserName','value'=>set_value('username')]);?>
       </div>
     </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="usernameErr" >*</p></div>
+    </div>
     
      <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
         <?php echo form_input(['name'=>'email','id'=>'inputEmail','class'=>'form-control','placeholder'=>'Email','value'=>set_value('email')]);?>
       </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="emailErr" >*</p></div>
     </div>
     
      <div class="form-group">
@@ -75,6 +95,10 @@
         <?php echo form_input(['name'=>'nid','id'=>'inputNID','class'=>'form-control','placeholder'=>'NID','value'=>set_value('nid')]);?>
       </div>
     </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="nidErr" >*</p></div>
+    </div>
     
       <div class="form-group">
       <label for="inputPhone" class="col-lg-2 control-label">Phone</label>
@@ -82,12 +106,20 @@
         <?php echo form_input(['name'=>'phone','id'=>'inputPhone','class'=>'form-control','placeholder'=>'Phone','value'=>set_value('phone')]);?>
       </div>
     </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="phoneErr" >*</p></div>
+    </div>
     
       <div class="form-group">
       <label for="inputStreet" class="col-lg-2 control-label">Street</label>
       <div class="col-lg-10">
         <?php echo form_input(['name'=>'street','id'=>'inputStreet','class'=>'form-control','placeholder'=>'Street','value'=>set_value('street')]);?>
       </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="streetErr" >*</p></div>
     </div>
     
      <div class="form-group">
@@ -100,6 +132,10 @@
 		  </select>
       </div>
     </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="cityErr" >*</p></div>
+    </div>
     
       <div class="form-group">
       <label for="selectThana" class="col-lg-2 control-label">Thana</label>
@@ -110,6 +146,10 @@
           <option value="Adamdeghi">Adamdeghi</option>
 		  </select>
       </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="thanaErr" >*</p></div>
     </div>
     
         <div class="form-group">
@@ -122,6 +162,10 @@
 		  </select>
       </div>
     </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="districtErr" >*</p></div>
+    </div>
     
         <div class="form-group">
       <label for="selectDivision" class="col-lg-2 control-label">Division</label>
@@ -132,6 +176,10 @@
           <option value="Chittagong">Chittgong</option>
 		  </select>
       </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="divisionErr" >*</p></div>
     </div>
     
         <div class="form-group">
@@ -144,6 +192,10 @@
 		  </select>
       </div>
     </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="countryErr" >*</p></div>
+    </div>
     
     <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Password</label>
@@ -151,11 +203,15 @@
         <?php echo form_password(['name'=>'password','id'=>'inputPassword','class'=>'form-control','placeholder'=>'Password','value'=>set_value('password')]);?>
         <div class="checkbox">
           <label>
-           <?php echo form_checkbox(['name'=>'labelcheckpass','id'=>'inputCheckPass']);?>
+           <?php echo form_checkbox(['id'=>'inputCheckPass','class'=>'check']);?>
 			  <?php echo form_label('See Password', 'labelcheckpass', [ 'class' => 'fontsmall','id' => 'labelCheckPass']);?>
           </label>
         </div>
       </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="passwordErr" >*</p></div>
     </div>
     
      <div class="form-group">
@@ -164,11 +220,15 @@
         <?php echo form_password(['name'=>'confirmpassword','id'=>'inputConfirmPassword','class'=>'form-control','placeholder'=>'Confirm Password','value'=>set_value('confirmpassword')]);?>
         <div class="checkbox">
           <label>
-           <?php echo form_checkbox(['name'=>'labelcheckconfpass','id'=>'inputConfCheckPass']);?>
+           <?php echo form_checkbox(['id'=>'inputConfCheckPass','class'=>'check']);?>
 			  <?php echo form_label('See Confirm Password', 'labelcheckconfpass', [ 'class' => 'fontsmall','id' => 'labelCheckPass']);?>
           </label>
         </div>
       </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="confirmpasswordErr" >*</p></div>
     </div>
     
     <div class="form-group">
@@ -177,12 +237,21 @@
          <?php echo form_textarea(['name'=>'about','id'=>'inputAbout','rows'=>'3','class'=>'form-control','value'=>set_value('about')]);?>
       </div>
     </div>
+    <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="aboutErr" >*</p></div>
+    </div>
+    
     <div class="form-group">
       <label class="col-lg-2 control-label">Profile Picture</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'Profile Picture','class'=>'imagebox','width'=>'200','height'=>'200'])?>
-       <?php echo form_upload(['name'=>'profile','id'=>'file','class'=>'form-control', 'value'=>set_value('profile')]);?>
+      <?php echo img(['src'=>'#','alt'=>'Profile Picture','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
+       <?php echo form_upload(['name'=>'profile','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('profile')]);?>
       </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="profileErr" >*</p></div>
     </div>
     
     <div class="form-group right">

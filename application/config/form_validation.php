@@ -4,12 +4,12 @@
                                     array(
                                             'field' => 'firstname',
                                             'label' => 'First Name',
-                                            'rules' => 'alpha|trim'
+                                            'rules' => 'required|alpha|trim'
                                          ),
 			                        array(
                                             'field' => 'lastname',
                                             'label' => 'Last Name',
-                                            'rules' => 'alpha|trim'
+                                            'rules' => 'required|alpha|trim'
                                          ),
 			                        array(
                                             'field' => 'username',
@@ -24,12 +24,12 @@
 			                        array(
                                             'field' => 'phone',
                                             'label' => 'Phone',
-                                            'rules' => 'numeric|trim'
+                                            'rules' => 'required|numeric|min_length[11]|max_length[14]|trim'
                                          ),
 			                        array(
                                             'field' => 'street',
                                             'label' => 'Street',
-                                            'rules' => 'alpha_numeric|trim'
+                                            'rules' => 'required|alpha_numeric|trim'
                                          ),
                                     array(
                                             'field' => 'password',
@@ -39,12 +39,12 @@
                                     array(
                                             'field' => 'confirmpassword',
                                             'label' => 'Password Confirmation',
-                                            'rules' => 'matches[password]'
+                                            'rules' => 'required|matches[password]'
                                          ),
                                     array(
                                             'field' => 'email',
                                             'label' => 'Email',
-                                            'rules' => 'valid_email'
+                                            'rules' => 'required|valid_email'
                                         )
                                     )
                                 );
