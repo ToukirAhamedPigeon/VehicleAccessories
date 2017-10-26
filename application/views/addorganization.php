@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Edit User</title>
+		<title>Add Organization</title>
 		<?php include('bundle.php')?>
 	</head>
 	<body class="font">
@@ -12,7 +12,7 @@
 	<div class="col-lg-10">
 	<?php echo form_open_multipart($host."User/registration",['class'=>'form-horizontal backgray formmarpad shadow','id'=>'regform']) ?>
   <fieldset>
-    <legend>Edit User</legend>
+    <legend>Add Organization</legend>
     
     <span id="posterrors">
    
@@ -30,54 +30,23 @@
    
     </span>
     
-     <div class="form-group">
-      <label for="selectTitle" class="col-lg-2 control-label">Title</label>
-      <div class="col-lg-10">
-        <select class="form-control" id="selectTitle" name="title">
-          <option value="Mr">Mr</option>
-          <option value="Miss">Miss</option>
-          <option value="Mrs">Mrs</option>
-		  </select>
-      </div>
-    </div>
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="titleErr" >*</p></div>
-    </div>
+     
     
-    <div class="form-group">
-      <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
-      <div class="col-lg-10">
-        <?php echo form_input(['name'=>'firstname','id'=>'inputFirstName','class'=>'form-control','placeholder'=>'FirstName','value'=>set_value('firstname')]);?>
-      </div>
-    </div>
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="firstnameErr" >*</p></div>
-    </div>
     
-     <div class="form-group">
-      <label for="inputLastName" class="col-lg-2 control-label">Last Name</label>
-      <div class="col-lg-10">
-        <?php echo form_input(['name'=>'lastname','id'=>'inputLastName','class'=>'form-control','placeholder'=>'LastName','value'=>set_value('lastname')]);?>
-      </div>
-    </div> 
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="lastnameErr" >*</p></div>
-    </div>
     
       <div class="form-group">
-      <label for="inputUserName" class="col-lg-2 control-label">User Name</label>
+      <label for="inputName" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'username','id'=>'inputUserName','class'=>'form-control','placeholder'=>'UserName','value'=>set_value('username')]);?>
+        <?php echo form_input(['name'=>'name','id'=>'inputName','class'=>'form-control','placeholder'=>'Name','value'=>set_value('name')]);?>
       </div>
     </div>
      <div class="errrow">
     	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="usernameErr" >*</p></div>
+    	<div class="col-lg-10"><p class="white" id="nameErr" >*</p></div>
     </div>
-    
+	
+	
+	
      <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
@@ -88,16 +57,17 @@
     	<div class="col-lg-2"></div>
     	<div class="col-lg-10"><p class="white" id="emailErr" >*</p></div>
     </div>
-    
-     <div class="form-group">
-      <label for="inputNID" class="col-lg-2 control-label">NID</label>
+	
+	
+	<div class="form-group">
+      <label for="inputWebsite" class="col-lg-2 control-label">Website</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'nid','id'=>'inputNID','class'=>'form-control','placeholder'=>'NID','value'=>set_value('nid')]);?>
+        <?php echo form_input(['name'=>'website','id'=>'inputWebsite','class'=>'form-control','placeholder'=>'Website','value'=>set_value('website')]);?>
       </div>
     </div>
      <div class="errrow">
     	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="nidErr" >*</p></div>
+    	<div class="col-lg-10"><p class="white" id="websiteErr" >*</p></div>
     </div>
     
       <div class="form-group">
@@ -198,38 +168,39 @@
     </div>
     
     <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <label for="inputLatitude" class="col-lg-2 control-label">Latitude</label>
       <div class="col-lg-10">
-        <?php echo form_password(['name'=>'password','id'=>'inputPassword','class'=>'form-control','placeholder'=>'Password','value'=>set_value('password')]);?>
-        <div class="checkbox">
-          <label>
-           <?php echo form_checkbox(['id'=>'inputCheckPass','class'=>'check']);?>
-			  <?php echo form_label('See Password', 'labelcheckpass', [ 'class' => 'fontsmall','id' => 'labelCheckPass']);?>
-          </label>
-        </div>
+        <?php echo form_input(['name'=>'latitude','id'=>'inputLatitude','class'=>'form-control','placeholder'=>'Latitude','value'=>set_value('latitude')]);?>
       </div>
     </div>
      <div class="errrow">
     	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="passwordErr" >*</p></div>
+    	<div class="col-lg-10"><p class="white" id="latitudeErr" >*</p></div>
+    </div>
+	
+	
+	<div class="form-group">
+      <label for="inputLongitude" class="col-lg-2 control-label">Longitude</label>
+      <div class="col-lg-10">
+        <?php echo form_input(['name'=>'longitude','id'=>'inputLongitude','class'=>'form-control','placeholder'=>'Longitude','value'=>set_value('longitude')]);?>
+      </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="longitudeErr" >*</p></div>
+    </div>
+	
+	<div class="form-group">
+      <label for="inputRules" class="col-lg-2 control-label">Rules</label>
+      <div class="col-lg-10">
+         <?php echo form_textarea(['name'=>'rules','id'=>'inputRules','rows'=>'3','class'=>'form-control','value'=>set_value('rules')]);?>
+      </div>
+    </div>
+    <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="rulesErr" >*</p></div>
     </div>
     
-     <div class="form-group">
-      <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm Password</label>
-      <div class="col-lg-10">
-        <?php echo form_password(['name'=>'confirmpassword','id'=>'inputConfirmPassword','class'=>'form-control','placeholder'=>'Confirm Password','value'=>set_value('confirmpassword')]);?>
-        <div class="checkbox">
-          <label>
-           <?php echo form_checkbox(['id'=>'inputConfCheckPass','class'=>'check']);?>
-			  <?php echo form_label('See Confirm Password', 'labelcheckconfpass', [ 'class' => 'fontsmall','id' => 'labelCheckPass']);?>
-          </label>
-        </div>
-      </div>
-    </div>
-     <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="confirmpasswordErr" >*</p></div>
-    </div>
     
     <div class="form-group">
       <label for="inputAbout" class="col-lg-2 control-label">About</label>
@@ -241,11 +212,12 @@
     	<div class="col-lg-2"></div>
     	<div class="col-lg-10"><p class="white" id="aboutErr" >*</p></div>
     </div>
+	
     
     <div class="form-group">
-      <label class="col-lg-2 control-label">Profile Picture</label>
+      <label class="col-lg-2 control-label">Logo</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'Profile Picture','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
+      <?php echo img(['src'=>'#','alt'=>'Profile Picture','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'logo'])?>
        <?php echo form_upload(['name'=>'profile','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('profile')]);?>
       </div>
     </div>
@@ -253,11 +225,59 @@
     	<div class="col-lg-2"></div>
     	<div class="col-lg-10"><p class="white" id="profileErr" >*</p></div>
     </div>
+	
+	<div class="form-group">
+      <label class="col-lg-2 control-label">Image Box 1</label>
+      <div class="col-lg-10">
+      <?php echo img(['src'=>'#','alt'=>'ImageBox1','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
+       <?php echo form_upload(['name'=>'imagebox1','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox1')]);?>
+      </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="imagebox1Err" >*</p></div>
+    </div>
+	
+	<div class="form-group">
+      <label class="col-lg-2 control-label">Image Box 2</label>
+      <div class="col-lg-10">
+      <?php echo img(['src'=>'#','alt'=>'ImageBox2','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox2'])?>
+       <?php echo form_upload(['name'=>'imagebox2','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox2')]);?>
+      </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="imagebox2Err" >*</p></div>
+    </div>
+	
+	<div class="form-group">
+      <label class="col-lg-2 control-label">Image Box 3</label>
+      <div class="col-lg-10">
+      <?php echo img(['src'=>'#','alt'=>'ImageBox3','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox3'])?>
+       <?php echo form_upload(['name'=>'imagebox3','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox3')]);?>
+      </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="imagebox3Err" >*</p></div>
+    </div>
+	
+	<div class="form-group">
+      <label class="col-lg-2 control-label">Image Box 4</label>
+      <div class="col-lg-10">
+      <?php echo img(['src'=>'#','alt'=>'ImageBox4','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox4'])?>
+       <?php echo form_upload(['name'=>'imagebox4','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox4')]);?>
+      </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="imagebox4Err" >*</p></div>
+    </div>
     
     <div class="form-group right">
       <div class="col-lg-10 col-lg-offset-2">
         <?php echo form_reset(['id'=>'formReset','class'=>'btn btn-default','value'=>'Reset'])?>
-        <?php echo form_submit(['id'=>'formSubmit','class'=>'btn btn-primary','value'=>'Edit'])?>
+        <?php echo form_submit(['id'=>'formSubmit','class'=>'btn btn-primary','value'=>'Add'])?>
       </div>
     </div>
   </fieldset>
