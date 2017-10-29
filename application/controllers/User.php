@@ -4,22 +4,70 @@ class User extends MY_Controller {
 	
 	public function index($id)
 	{
+		$this->sessioncheck();
 		$this->load->view('userprofile');
+	}
+	
+	private function sessioncheck()
+	{
+		if(!$this->session->userdata('userid'))
+		{
+			header("Location: ".$this->host()."User/showlogin");
+		}
 	}
    
 	public function showlogin()
 	{
-		$this->load->view('login');
+		if(!$this->session->userdata('userid'))
+		{
+			$this->load->view('login');
+		}
+		else
+		{
+			$id=$this->session->userdata('userid');
+			header("Location: ".$this->host()."User/index/".$id);
+		}
 	}
 	
 	public function login()
 	{
-		
+		if ($this->form_validation->run('login') == FALSE)
+      {
+       $this->load->view('login');
+      }
+      else
+      {
+		  $post=$this->input->post();
+		  unset($post['submit']);
+		  $this->load->model('userModel');
+		  if($user=$this->userModel->getUser($post['username']))
+		  {
+				 $id=$user->id;
+			     $password=$user->password;
+			  if($post['password']===$password)
+			  {
+				  $this->session->set_userdata('userid',$id);
+				  header("Location: ".$this->host()."User/index/".$id);
+			  }
+			  else
+			  {
+				   $check_error='Password is not correct.'; 
+				  $this->load->view('login',compact('check_error'));
+			  }
+		  }
+		  else
+		  {
+			    $check_error='Invalid Username'; 
+				$this->load->view('login',compact('check_error'));
+		  }
+	  }
 	}
 	
 	public function logout()
 	{
-		
+		$this->session->unset_userdata('userid');
+		//echo($this->session->userdata('userid'));
+		header("Location: ".$this->host()."User/showlogin");
 	}
 	
 	public function showRegistration()
@@ -38,7 +86,6 @@ class User extends MY_Controller {
 		 $post=$this->input->post();
 		 unset($post['submit']);
 		  unset($post['confirmpassword']);
-		  unset($post['submit']);
 		 // unset($post['labelcheckconfpass']);
 		  $filename=rand(100,999).$post['username'].getDateTime(2);
          $config=['upload_path'=> './assets/files/profile',
@@ -53,13 +100,14 @@ class User extends MY_Controller {
 			  $this->load->model('filesModel');
 			 if($this->userModel->addUser($post))
 			 {
-			  $userid=$this->userModel->getUser($post['username']);
+			  $user=$this->userModel->getUser($post['username']);
 				 
-				$id=$userid->id;
+				$id=$user->id;
 				 //echo $id;
 			  $fileinfo=array('fileholder'=>$id,'filestatus'=>'profile','filepath'=>'assets/files/profile/'.$fileAbout['orig_name'],'holdertype'=>'user');
 			  if($this->filesModel->uploadFile($fileinfo))
 			  {
+				$this->session->set_flashdata('feedback','Registration Successful. Login with Username and Password.');
 				header("Location: ".$this->host()."User/showlogin");
 		 	  }
 				 else

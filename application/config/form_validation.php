@@ -29,7 +29,7 @@
 			                        array(
                                             'field' => 'street',
                                             'label' => 'Street',
-                                            'rules' => 'required|alpha_numeric|trim'
+                                            'rules' => 'required'
                                          ),
                                     array(
                                             'field' => 'password',
@@ -46,5 +46,18 @@
                                             'label' => 'Email',
                                             'rules' => 'required|valid_email'
                                         )
-                                    )
+                                    ),
+			         'login'=> array(
+			                         array(
+                                            'field' => 'username',
+                                            'label' => 'User Name',
+                                            'rules' => 'required|trim'
+                                          ),
+			                         array(
+                                            'field' => 'password',
+                                            'label' => 'Password',
+                                            'rules' => 'required'
+                                          )
+		                            )
+			
                                 );

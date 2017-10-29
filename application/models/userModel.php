@@ -33,7 +33,7 @@ class userModel extends MY_Model{
 	
 	public function getUser($username)
 	{
-		$q =$this->db->select(['id'])->where('username',$username)->get('user');
+		$q =$this->db->get_where('user', array('username' => $username));
 		return $q->row();
 	}
 	

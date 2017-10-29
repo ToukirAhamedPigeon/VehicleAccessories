@@ -10,22 +10,27 @@
 	<div class="row">
 	<div class="col-lg-1"></div>
 	<div class="col-lg-10">
-	<?php echo form_open_multipart($host."User/registration",['class'=>'form-horizontal backgray formmarpad shadow','id'=>'regform']) ?>
+	<?php echo form_open($host."User/login",['class'=>'form-horizontal backgray formmarpad shadow','id'=>'regform']) ?>
   <fieldset>
     <legend>Log In</legend>
     
     <span id="posterrors">
    
     <?php 
-		if(validation_errors()!="")
+	   if(validation_errors()!="")
 		{
 			echo ' <button type="button" id="errorclose" class="close" data-dismiss="alert">&times</button><div class="alert alert-dismissible alert-danger fontsmall"><strong>Oops!</strong></br>'.validation_errors().'</div>';
 		}
-		elseif(isset($upload_error))
+		elseif(isset($check_error))
 		{
-			echo ' <button type="button" id="errorclose" class="close" data-dismiss="alert">&times</button><div class="alert alert-dismissible alert-danger fontsmall"><strong>Oops!</strong></br>'.$upload_error.'</div>';
+			echo ' <button type="button" id="errorclose" class="close" data-dismiss="alert">&times</button><div class="alert alert-dismissible alert-danger fontsmall"><strong>Oops!</strong></br>'.$check_error.'</div>';
 		}
-		
+		if($feedback=$this->session->flashdata('feedback'))
+		{
+			echo ' <div class="alert alert-dismissible alert-success fontsmall">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>'.$feedback.
+            '</div>';
+		}
 		?>
    
     </span>
@@ -67,7 +72,7 @@
     <div class="form-group right">
       <div class="col-lg-10 col-lg-offset-2">
         
-        <?php echo form_submit(['id'=>'formSubmit','class'=>'btn btn-primary','value'=>'Log In'])?>
+        <?php echo form_submit(['id'=>'formSubmit','class'=>'btn btn-default','value'=>'Log In'])?>
       </div>
     </div>
   </fieldset>
