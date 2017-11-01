@@ -12,7 +12,7 @@ class User extends MY_Controller {
 	{
 		if(!$this->session->userdata('userid'))
 		{
-			header("Location: ".$this->host()."User/showlogin");
+			redirect('/User/showlogin', 'refresh');
 		}
 	}
    
@@ -25,7 +25,7 @@ class User extends MY_Controller {
 		else
 		{
 			$id=$this->session->userdata('userid');
-			header("Location: ".$this->host()."User/index/".$id);
+			redirect('/User/index/'.$id, 'refresh');
 		}
 	}
 	
@@ -47,7 +47,7 @@ class User extends MY_Controller {
 			  if($post['password']===$password)
 			  {
 				  $this->session->set_userdata('userid',$id);
-				  header("Location: ".$this->host()."User/index/".$id);
+				  redirect('/User/index/'.$id, 'refresh');
 			  }
 			  else
 			  {
@@ -66,8 +66,7 @@ class User extends MY_Controller {
 	public function logout()
 	{
 		$this->session->unset_userdata('userid');
-		//echo($this->session->userdata('userid'));
-		header("Location: ".$this->host()."User/showlogin");
+		redirect('/User/showlogin', 'refresh');
 	}
 	
 	public function showRegistration()
@@ -85,9 +84,8 @@ class User extends MY_Controller {
       {
 		 $post=$this->input->post();
 		 unset($post['submit']);
-		  unset($post['confirmpassword']);
-		 // unset($post['labelcheckconfpass']);
-		  $filename=rand(100,999).$post['username'].getDateTime(2);
+		 unset($post['confirmpassword']);
+		 $filename=rand(100,999).$post['username'].getDateTime(2);
          $config=['upload_path'=> './assets/files/profile',
 				'allowed_types'=>'jpg|gif|png|jpeg',
 				  'file_name'=>$filename,
@@ -102,13 +100,12 @@ class User extends MY_Controller {
 			 {
 			  $user=$this->userModel->getUser($post['username']);
 				 
-				$id=$user->id;
-				 //echo $id;
+			  $id=$user->id;
 			  $fileinfo=array('fileholder'=>$id,'filestatus'=>'profile','filepath'=>'assets/files/profile/'.$fileAbout['orig_name'],'holdertype'=>'user');
 			  if($this->filesModel->uploadFile($fileinfo))
 			  {
 				$this->session->set_flashdata('feedback','Registration Successful. Login with Username and Password.');
-				header("Location: ".$this->host()."User/showlogin");
+				redirect('/User/showlogin', 'refresh');
 		 	  }
 				 else
 				 {
@@ -140,7 +137,6 @@ class User extends MY_Controller {
 	
 	public function editUser()
 	{
-		random();
 	}
 	
 		
@@ -161,7 +157,7 @@ class User extends MY_Controller {
 	
 	public function activate()
 	{
-		
+		echo $this->host();
 	}
 }
 	

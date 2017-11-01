@@ -6,4 +6,12 @@ class Others extends MY_Controller {
 	{
 		
 	}
+	public function showAddLookup()
+	{
+		$this->load->view('Admin/addlookup');
+	}
+	public function getlookup()
+	{
+		
+	}
 }

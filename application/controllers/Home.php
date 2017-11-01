@@ -7,10 +7,6 @@ class Home extends MY_Controller {
 		$this->load->view('home');
 	}
 	
-	public function getLookup()
-	{
-		
-	}
 	
 	public function getPopular()
 	{

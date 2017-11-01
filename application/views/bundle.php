@@ -1,5 +1,5 @@
 <?php 
-$host="http://localhost:82/VehicleAccessories/" 
+$host=base_url();
 ?>
 <script src=<?php echo("'".$host."assets/js/jquery-3.1.1.js'"); ?>></script>
 <script src=<?php echo("'".$host."assets/bootstrap-3.3.7-dist/js/bootstrap.min.js'");?>></script>

@@ -70,8 +70,20 @@ p.noerror
     width: 100%; 
 }
 
+.logosmall{
+	background: #3b3b3b;
+	padding: .2%;
+	text-align: left;
+	color:#ffffff;
+	overflow: hidden;
+    position: fixed; 
+    top: 0;
+    width: 100%; 
+}
+
+
 .topmargin{
-	margin-top: 80px; 
+	margin-top: 6%; 
 }
 
 .logolink{
@@ -84,7 +96,14 @@ p.noerror
 	color:#B9B9B9;
 	text-decoration: none;
 }
-
+/*header*/
+.header{
+	text-align: left;
+    position: fixed; 
+    top: 0;
+    width: 100%; 
+	margin-top: 4.2%;
+}
 /*footer*/
 .footer{
 	background: #3b3b3b;
