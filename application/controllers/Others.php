@@ -12,6 +12,11 @@ class Others extends MY_Controller {
 	}
 	public function getlookup()
 	{
-		
+		echo "ok"; die();
+		if($this->input->post())
+		{
+			$data=json_decode($this->input->post('data'));
+			echo $data['type'];
+		}
 	}
 }

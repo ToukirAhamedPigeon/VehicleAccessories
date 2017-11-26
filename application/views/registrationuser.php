@@ -111,45 +111,34 @@
     	<div class="col-lg-10"><p class="white" id="phoneErr" >*</p></div>
     </div>
     
-      <div class="form-group">
-      <label for="inputStreet" class="col-lg-2 control-label">Street</label>
+        <div class="form-group">
+      <label for="selectCountry" class="col-lg-2 control-label">Country</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'street','id'=>'inputStreet','class'=>'form-control','placeholder'=>'Street','value'=>set_value('street')]);?>
+        <select class="form-control" id="selectCountry" name="country">
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="India">India</option>
+          <option value="Pakistan">Pakistan</option>
+		  </select>
       </div>
     </div>
      <div class="errrow">
     	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="streetErr" >*</p></div>
+    	<div class="col-lg-10"><p class="white" id="countryErr" >*</p></div>
     </div>
     
-     <div class="form-group">
-      <label for="selectCity" class="col-lg-2 control-label">City</label>
+      <div class="form-group">
+      <label for="selectDivision" class="col-lg-2 control-label">Division</label>
       <div class="col-lg-10">
-        <select class="form-control" id="selectCity" name="city">
+        <select class="form-control" id="selectDivision" name="division">
           <option value="Dhaka">Dhaka</option>
-          <option value="Bogra">Bogra</option>
-          <option value="Chittgong">Chittagong</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Chittagong">Chittgong</option>
 		  </select>
       </div>
-    </div>
-     <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="cityErr" >*</p></div>
-    </div>
-    
-      <div class="form-group">
-      <label for="selectThana" class="col-lg-2 control-label">Thana</label>
-      <div class="col-lg-10">
-        <select class="form-control" id="selectThana" name="thana">
-          <option value="Khilkhet">Khilkhet</option>
-          <option value="Banani">Banani</option>
-          <option value="Adamdeghi">Adamdeghi</option>
-		  </select>
       </div>
-    </div>
      <div class="errrow">
     	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="thanaErr" >*</p></div>
+    	<div class="col-lg-10"><p class="white" id="divisionErr" >*</p></div>
     </div>
     
         <div class="form-group">
@@ -167,36 +156,49 @@
     	<div class="col-lg-10"><p class="white" id="districtErr" >*</p></div>
     </div>
     
-        <div class="form-group">
-      <label for="selectDivision" class="col-lg-2 control-label">Division</label>
+    
+     <div class="form-group">
+      <label for="selectThana" class="col-lg-2 control-label">Thana</label>
       <div class="col-lg-10">
-        <select class="form-control" id="selectDivision" name="division">
+        <select class="form-control" id="selectThana" name="thana">
+          <option value="Khilkhet">Khilkhet</option>
+          <option value="Banani">Banani</option>
+          <option value="Adamdeghi">Adamdeghi</option>
+		  </select>
+      </div>
+    </div>
+     <div class="errrow">
+    	<div class="col-lg-2"></div>
+    	<div class="col-lg-10"><p class="white" id="thanaErr" >*</p></div>
+    </div>
+    
+     <div class="form-group">
+      <label for="selectCity" class="col-lg-2 control-label">City</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="selectCity" name="city">
           <option value="Dhaka">Dhaka</option>
-          <option value="Rajshahi">Rajshahi</option>
-          <option value="Chittagong">Chittgong</option>
+          <option value="Bogra">Bogra</option>
+          <option value="Chittgong">Chittagong</option>
 		  </select>
       </div>
     </div>
-     <div class="errrow">
+      <div class="errrow">
     	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="divisionErr" >*</p></div>
+    	<div class="col-lg-10"><p class="white" id="cityErr" >*</p></div>
     </div>
     
-        <div class="form-group">
-      <label for="selectCountry" class="col-lg-2 control-label">Country</label>
+    
+     <div class="form-group">
+      <label for="inputStreet" class="col-lg-2 control-label">Street</label>
       <div class="col-lg-10">
-        <select class="form-control" id="selectCountry" name="country">
-          <option value="Bangladesh">Bangladesh</option>
-          <option value="India">India</option>
-          <option value="Pakistan">Pakistan</option>
-		  </select>
+        <?php echo form_input(['name'=>'street','id'=>'inputStreet','class'=>'form-control','placeholder'=>'Street','value'=>set_value('street')]);?>
       </div>
     </div>
      <div class="errrow">
     	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="countryErr" >*</p></div>
+    	<div class="col-lg-10"><p class="white" id="streetErr" >*</p></div>
     </div>
-    
+   
     <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Password</label>
       <div class="col-lg-10">
@@ -245,7 +247,7 @@
     <div class="form-group">
       <label class="col-lg-2 control-label">Profile Picture</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'Profile Picture','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
+      <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
        <?php echo form_upload(['name'=>'profile','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('profile')]);?>
       </div>
     </div>
@@ -270,3 +272,11 @@
 		<?php include('_footer.php')?>
 	</body>
 </html>
+
+
+<script type="text/javascript">
+	$(function(){
+		
+		
+	});
+</script>

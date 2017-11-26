@@ -1,5 +1,54 @@
 $(function(){
 	"use strict";
+	var baseurl;
+	//var a;
+	//Universal
+	$(function(){
+		getlookup("Title",null,"selectTitle");
+		
+		getAjax();
+		alert(a);
+	    });
+	
+	var a;
+
+//$('body').append('<div>'+a+'</div>');
+function getAjax() {
+  $.ajax({
+   type: "GET",
+   url: baseurl+"Others/getlookup",
+   async: false,
+   success: function(status) {
+     a = status;
+  }});
+}
+	
+	function getlookup(type,parent,place)
+	{
+		
+		var dataPost = {
+                       "type":type,
+			           "parent":parent
+                    };
+		
+		 var dataString = JSON.stringify(dataPost);
+		
+                    $.ajax({
+                        url: baseurl+"Others/getlookup",
+                        data: { data: dataString },
+                        type: 'POST',
+						async: false,
+                        success: function (response,status)
+                        {
+							alert("ok");
+							alert(status);
+							a="good";
+                          
+                        }
+                    });
+	}
+	//
+	
 	//forUserRegistrationFrom
 	$("#errorclose").click(function(){
 		$("#posterrors").html("");
@@ -47,5 +96,7 @@ $(function(){
 				id.attr('type','password');
 			}
 	});
+	
+	//
 	
 });
