@@ -3,14 +3,14 @@
 <html>
 	<head>
 		<title>User Registration</title>
-		<?php include('bundle.php')?>
+		<?php include('bundle.php');?>
 	</head>
 	<body class="font">
 	<div class="container topmargin">
 	<div class="row">
 	<div class="col-lg-1"></div>
 	<div class="col-lg-10">
-	<?php echo form_open_multipart($host."User/registration",['class'=>'form-horizontal backgray formmarpad shadow','id'=>'regform']) ?>
+	<?php echo form_open_multipart($host."Home/registration",['class'=>'form-horizontal backgray formmarpad shadow','id'=>'regform']) ?>
   <fieldset>
     <legend>User Registration</legend>
     

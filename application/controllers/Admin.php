@@ -154,4 +154,18 @@ class Admin extends MY_Controller {
 	{
 		
 	}
+	public function __construct() {
+		parent::__construct();
+       	if(!$this->session->userdata('userid')||!$this->session->userdata('usertype'))
+		{
+			redirect('/Home/showlogin', 'refresh');
+		}
+		else
+		{
+			if($this->session->userdata('usertype')!='admin')
+			{
+				redirect('/Home/showlogin', 'refresh');
+			}
+		}
+    }
 }

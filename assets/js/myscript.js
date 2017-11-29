@@ -3,17 +3,17 @@ $(function(){
 	var baseurl;
 	//var a;
 	//Universal
-	$(function(){
+	/*$(function(){
 		getlookup("Title",null,"selectTitle");
 		
 		getAjax();
 		alert(a);
-	    });
+	    });*/
 	
 	var a;
 
 //$('body').append('<div>'+a+'</div>');
-function getAjax() {
+/*function getAjax() {
   $.ajax({
    type: "GET",
    url: baseurl+"Others/getlookup",
@@ -46,7 +46,7 @@ function getAjax() {
                           
                         }
                     });
-	}
+	}*/
 	//
 	
 	//forUserRegistrationFrom

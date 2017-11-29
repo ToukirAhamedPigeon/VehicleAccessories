@@ -4,19 +4,14 @@ class User extends MY_Controller {
 	
 	public function index($id)
 	{
-		$this->sessioncheck();
 		$this->load->view('userprofile');
 	}
-	
-	private function sessioncheck()
+	public function logout()
 	{
-		if(!$this->session->userdata('userid'))
-		{
-			redirect('/User/showlogin', 'refresh');
-		}
+		$this->session->unset_userdata('userid');
+		redirect('/Home/showlogin', 'refresh');
 	}
-   
-	public function showlogin()
+	/*public function showlogin()
 	{
 		if(!$this->session->userdata('userid'))
 		{
@@ -61,15 +56,10 @@ class User extends MY_Controller {
 				$this->load->view('login',compact('check_error'));
 		  }
 	  }
-	}
+	}*/
 	
-	public function logout()
-	{
-		$this->session->unset_userdata('userid');
-		redirect('/User/showlogin', 'refresh');
-	}
 	
-	public function showRegistration()
+	/*public function showRegistration()
 	{
 		$this->load->view('registrationuser');
 	}
@@ -128,7 +118,7 @@ class User extends MY_Controller {
 			   $this->load->view('registrationuser',compact('upload_error'));
 		  }
       }
-	}
+	}*/
 	
 	public function showEditUser($id)
 	{
@@ -159,5 +149,13 @@ class User extends MY_Controller {
 	{
 		echo $this->host();
 	}
+
+	public function __construct() {
+		parent::__construct();
+       	if(!$this->session->userdata('userid'))
+		{
+			redirect('/Home/showlogin', 'refresh');
+		}
+    }
 }
 	

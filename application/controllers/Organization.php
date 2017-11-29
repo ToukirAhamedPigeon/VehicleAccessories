@@ -4,9 +4,26 @@ class Organization extends MY_Controller {
 
 	public function index($id)
 	{
+		if($this->valid_normal()){
 		$this->load->view('organizationprofile');
+		}
+		else
+		{
+			redirect('/Home/showlogin', 'refresh');
+		}
 	}
 	
+	private function valid_normal()
+		{
+		if(!$this->session->userdata('userid'))
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 		
 	public function showAddOrganization()
 	{
