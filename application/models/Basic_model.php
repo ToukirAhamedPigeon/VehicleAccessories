@@ -65,12 +65,10 @@ class Basic_model extends CI_Model
         $this->db->delete($tableName);
     }
 
-    public function getWhere($selector, $condition, $tablename)
+    public function getWhere($selector, $field, $value, $tablename)
     {
         $this->db->select($selector);
-        $this->db->from($tablename);
-        $this->db->where($condition);
-        $result = $this->db->get();
+        $result = $this->db->get_where($tablename,array($field =>$value));
         return $result->result_array();
     }
     public function getWhereOrder($selector, $condition, $tablename,$order_cond,$order_type)

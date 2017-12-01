@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<title>Edit User</title>
-		<?php include('bundle.php')?>
+		<?php include('bundle.php');?>
 	</head>
 	<body class="font">
 	<div class="container topmargin">
@@ -34,9 +34,9 @@
       <label for="selectTitle" class="col-lg-2 control-label">Title</label>
       <div class="col-lg-10">
         <select class="form-control" id="selectTitle" name="title">
-          <option value="Mr">Mr</option>
-          <option value="Miss">Miss</option>
-          <option value="Mrs">Mrs</option>
+          <option value="Mr"<?php echo set_select('title', 'Mr', TRUE);?>>Mr</option>
+          <option value="Miss"<?php echo set_select('title', 'Miss');?>>Miss</option>
+          <option value="Mrs"<?php echo set_select('title', 'Mrs');?>>Mrs</option>
 		  </select>
       </div>
     </div>
@@ -245,7 +245,7 @@
     <div class="form-group">
       <label class="col-lg-2 control-label">Profile Picture</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'Profile Picture','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
+      <?php echo img(['class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
        <?php echo form_upload(['name'=>'profile','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('profile')]);?>
       </div>
     </div>
@@ -266,7 +266,7 @@
 		<div class="col-lg-1"></div>
 		</div>
 		</div>
-		<?php include('logo.php')?>
-		<?php include('_footer.php')?>
+		<?php include('logo.php');?>
+		<?php include('_footer.php');?>
 	</body>
 </html>
