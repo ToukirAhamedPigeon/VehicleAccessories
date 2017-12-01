@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<title>Add Organization</title>
-		<?php include('bundle.php')?>
+		<?php include('bundle.php');?>
 	</head>
 	<body class="font">
 	<div class="container topmargin">
@@ -217,8 +217,8 @@
     <div class="form-group">
       <label class="col-lg-2 control-label">Logo</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'Profile Picture','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'logo'])?>
-       <?php echo form_upload(['name'=>'profile','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('profile')]);?>
+      <?php echo img(['src'=>'#','alt'=>'Profile Picture','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'logobox'])?>
+       <?php echo form_upload(['name'=>'logo','id'=>'logo','class'=>'form-control inputFile', 'value'=>set_value('logo')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -229,7 +229,7 @@
 	<div class="form-group">
       <label class="col-lg-2 control-label">Image Box 1</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'ImageBox1','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
+      <?php echo img(['src'=>'#','alt'=>'ImageBox1','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox1'])?>
        <?php echo form_upload(['name'=>'imagebox1','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox1')]);?>
       </div>
     </div>
@@ -241,8 +241,8 @@
 	<div class="form-group">
       <label class="col-lg-2 control-label">Image Box 2</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'ImageBox2','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox2'])?>
-       <?php echo form_upload(['name'=>'imagebox2','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox2')]);?>
+      <?php echo img(['src'=>'#','alt'=>'ImageBox2','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox2'])?>
+       <?php echo form_upload(['name'=>'imagebox2','id'=>'file2','class'=>'form-control inputFile', 'value'=>set_value('imagebox2')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -253,8 +253,8 @@
 	<div class="form-group">
       <label class="col-lg-2 control-label">Image Box 3</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'ImageBox3','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox3'])?>
-       <?php echo form_upload(['name'=>'imagebox3','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox3')]);?>
+      <?php echo img(['src'=>'#','alt'=>'ImageBox3','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox3'])?>
+       <?php echo form_upload(['name'=>'imagebox3','id'=>'file3','class'=>'form-control inputFile', 'value'=>set_value('imagebox3')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -265,8 +265,8 @@
 	<div class="form-group">
       <label class="col-lg-2 control-label">Image Box 4</label>
       <div class="col-lg-10">
-      <?php echo img(['src'=>'#','alt'=>'ImageBox4','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox4'])?>
-       <?php echo form_upload(['name'=>'imagebox4','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox4')]);?>
+      <?php echo img(['src'=>'#','alt'=>'ImageBox4','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox4'])?>
+       <?php echo form_upload(['name'=>'imagebox4','id'=>'file4','class'=>'form-control inputFile', 'value'=>set_value('imagebox4')]);?>
       </div>
     </div>
      <div class="errrow">
