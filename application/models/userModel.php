@@ -1,9 +1,15 @@
 <?php
 class userModel extends MY_Model{
 	
-	public function getUserInfoAll($id)
+	public function getUserInfoAll($field,$value)
 	{
-		 
+		 $this->db->select('*');
+       $this->db->join('files', 'user.id=files.fileholder AND files.holdertype="user" AND filestatus="profile"', 'left');
+       $result = $this->db->get_where('user',array($field =>$value));
+       return $result->result_array();
+		/*$this->db->select($selector);
+        $result = $this->db->get_where($tablename,array($field =>$value));
+        return $result->result_array();*/
 	}
 	
 	public function getUserListAll()

@@ -67,5 +67,23 @@ $(function(){
 	});
 	
 	//
+
+		$(function(){
+			active_link();
+			total_message();
+		});
+
+		function total_message()
+		{
+			$('#totalmessage').html('10');
+		}
+
+		function active_link()
+		{
+			$('.activelink').removeClass('activelink');
+			var alink=$('#activelink').val();
+			//alert(alink);
+			$(alink).addClass('activelink');
+		}
 	
 });

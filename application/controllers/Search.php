@@ -1,10 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Message extends MY_Controller {
+class Search extends MY_Controller {
 
-	public function index($type)
+	public function index()
 	{
-		$this->load->view('list');
+		if($this->session->userdata('userid'))
+		{
+			$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		}
+		$data['activelink']='';
+		$this->load->view('search',$data);
 	}
 	
 	public function getBrandList()
@@ -35,6 +40,10 @@ class Message extends MY_Controller {
 	public function getSearchedOrganizationList()
 	{
 		
+	}
+	public function __construct() {
+		parent::__construct();
+		$this->load->model('userModel');
 	}
 	
 }

@@ -4,9 +4,23 @@ class Home extends MY_Controller {
 
 	public function index()
 	{
-		$this->load->view('home');
+		if($this->session->userdata('userid'))
+		{
+			$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		}
+		$data['activelink']='#homelink';
+		$this->load->view('home',$data);
 	}
-	
+
+	public function aboutus()
+	{
+		if($this->session->userdata('userid'))
+		{
+			$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		}
+		$data['activelink']='#aboutlink';
+		$this->load->view('aboutus',$data);
+	}
 	
 	public function getPopular()
 	{
@@ -27,12 +41,13 @@ class Home extends MY_Controller {
 	{
 		if(!$this->session->userdata('userid'))
 		{
-			$this->load->view('login');
+			$data['activelink']='#loginlink';
+			$this->load->view('login',$data);
 		}
 		else
 		{
-			$id=$this->session->userdata('userid');
-			redirect('/User/index/'.$id, 'refresh');
+			$username=$this->session->userdata('username');
+			redirect('/User/index/'.$username, 'refresh');
 		}
 	}
 	
@@ -53,14 +68,16 @@ class Home extends MY_Controller {
 				{
 					$id=$user->id;
 					$password=$user->password;
+					$username=$user->username;
 					$type=$user->type;
 					if($post['password']===$password)
 					{
 						$this->session->set_userdata('userid',$id);
+						$this->session->set_userdata('username',$username);
 						$this->session->set_userdata('usertype',$type);
 
 
-						redirect('/User/index/'.$id, 'refresh');
+						redirect('/User/index/'.$username, 'refresh');
 					}
 					else
 					{
@@ -83,7 +100,8 @@ class Home extends MY_Controller {
 
 	public function showRegistration()
 	{
-		$this->load->view('registrationuser');
+		$data['activelink']='#registerlink';
+		$this->load->view('registrationuser',$data);
 	}
 	
 	public function registration()
@@ -145,6 +163,11 @@ class Home extends MY_Controller {
 	{
 		redirect('/Home/showRegistration', 'refresh');
 	}
+}
+
+public function __construct() {
+	parent::__construct();
+	$this->load->model('userModel');
 }
 
 

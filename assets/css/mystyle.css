@@ -75,7 +75,6 @@ p.noerror
 	padding: .2%;
 	text-align: left;
 	color:#ffffff;
-	overflow: hidden;
     position: fixed; 
     top: 0;
     width: 100%; 
@@ -85,16 +84,37 @@ p.noerror
 .topmargin{
 	margin-top: 6%; 
 }
-
 .logolink{
 	color: white;
 	text-decoration: none;
 	text-align: right;
 }
 
-.logolink:hover{
-	color:#B9B9B9;
+.logolinkactive{
+	color: white;
 	text-decoration: none;
+	text-align: right;
+}
+
+.logolink:hover{
+	color:#000000;
+	text-decoration: none;
+}
+
+.biglink{
+	color: white;
+	text-decoration: none;
+}
+.biglink:hover{
+	color: #c3c6cc;
+	text-decoration: none;
+}
+.activelink
+{
+	background-color: white;
+	color: black;
+	text-decoration: none; 
+	opacity: 0.9;
 }
 /*header*/
 .header{

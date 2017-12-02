@@ -115,128 +115,128 @@
       <label for="selectCountry" class="col-lg-2 control-label">Country</label>
       <div class="col-lg-10">
         <select class="form-control" id="selectCountry" name="country">
-           <option value="Bangladesh"<?php echo set_select('country', 'Bangladesh', TRUE);?>>Bangladesh</option>
-            <option value="India"<?php echo set_select('country', 'India');?>>India</option>
-            <option value="Pakistan"<?php echo set_select('country', 'Pakistan');?>>Pakistan</option>
-        </select>
-      </div>
-    </div>
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="countryErr" >*</p></div>
-    </div>
-    
-    <div class="form-group">
-      <label for="selectDivision" class="col-lg-2 control-label">Division</label>
-      <div class="col-lg-10">
-        <select class="form-control" id="selectDivision" name="division">
-          <option value="Dhaka"<?php echo set_select('division', 'Dhaka', TRUE);?>>Dhaka</option>
-            <option value="Rajshahi"<?php echo set_select('division', 'Rajshahi');?>>Rajshahi</option>
-            <option value="Chittgong"<?php echo set_select('division', 'Chittgong');?>>Chittgong</option>
-        </select>
-      </div>
-    </div>
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="divisionErr" >*</p></div>
-    </div>
-    
-    <div class="form-group">
-      <label for="selectDistrict" class="col-lg-2 control-label">District</label>
-      <div class="col-lg-10">
-        <select class="form-control" id="selectDistrict" name="district">
-           <option value="Dhaka"<?php echo set_select('district', 'Dhaka', TRUE);?>>Dhaka</option>
-            <option value="Bogra"<?php echo set_select('district', 'Bogra');?>>Bogra</option>
-            <option value="Comilla"<?php echo set_select('district', 'Comilla');?>>Comilla</option>
-        </select>
-      </div>
-    </div>
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="districtErr" >*</p></div>
-    </div>
-    
-    
-    <div class="form-group">
-      <label for="selectThana" class="col-lg-2 control-label">Thana</label>
-      <div class="col-lg-10">
-        <select class="form-control" id="selectThana" name="thana">
-           <option value="Khilkhet"<?php echo set_select('thana', 'Khilkhet', TRUE);?>>Khilkhet</option>
-            <option value="Banani"<?php echo set_select('thana', 'Banani');?>>Banani</option>
-            <option value="Adamdeghi"<?php echo set_select('thana', 'Adamdeghi');?>>Adamdeghi</option>
-        </select>
-      </div>
-    </div>
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="thanaErr" >*</p></div>
-    </div>
-    
-    <div class="form-group">
-      <label for="selectCity" class="col-lg-2 control-label">City</label>
-      <div class="col-lg-10">
-        <select class="form-control" id="selectCity" name="city">
-           <option value="Dhaka"<?php echo set_select('city', 'Dhaka', TRUE);?>>Dhaka</option>
-            <option value="Bogra"<?php echo set_select('city', 'Bogra');?>>Bogra</option>
-            <option value="Chittgong"<?php echo set_select('city', 'Chittgong');?>>Chittgong</option>
-          <option value="Dhaka">Dhaka</option>
-          <option value="Bogra">Bogra</option>
-          <option value="Chittgong">Chittagong</option>
-        </select>
-      </div>
-    </div>
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="cityErr" >*</p></div>
-    </div>
-    
-    
-    <div class="form-group">
-      <label for="inputStreet" class="col-lg-2 control-label">Street</label>
-      <div class="col-lg-10">
-        <?php echo form_input(['name'=>'street','id'=>'inputStreet','class'=>'form-control','placeholder'=>'Street','value'=>set_value('street')]);?>
-      </div>
-    </div>
-    <div class="errrow">
-    	<div class="col-lg-2"></div>
-    	<div class="col-lg-10"><p class="white" id="streetErr" >*</p></div>
-    </div>
-
-    <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-      <div class="col-lg-10">
-        <?php echo form_password(['name'=>'password','id'=>'inputPassword','class'=>'form-control','placeholder'=>'Password','value'=>set_value('password')]);?>
-        <div class="checkbox">
-          <label>
-           <?php echo form_checkbox(['id'=>'inputCheckPass','class'=>'check']);?>
-           <?php echo form_label('See Password', 'labelcheckpass', [ 'class' => 'fontsmall','id' => 'labelCheckPass']);?>
-         </label>
-       </div>
+         <option value="Bangladesh"<?php echo set_select('country', 'Bangladesh', TRUE);?>>Bangladesh</option>
+         <option value="India"<?php echo set_select('country', 'India');?>>India</option>
+         <option value="Pakistan"<?php echo set_select('country', 'Pakistan');?>>Pakistan</option>
+       </select>
      </div>
    </div>
    <div class="errrow">
      <div class="col-lg-2"></div>
-     <div class="col-lg-10"><p class="white" id="passwordErr" >*</p></div>
+     <div class="col-lg-10"><p class="white" id="countryErr" >*</p></div>
    </div>
 
    <div class="form-group">
-    <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm Password</label>
+    <label for="selectDivision" class="col-lg-2 control-label">Division</label>
     <div class="col-lg-10">
-      <?php echo form_password(['name'=>'confirmpassword','id'=>'inputConfirmPassword','class'=>'form-control','placeholder'=>'Confirm Password','value'=>set_value('confirmpassword')]);?>
-      <div class="checkbox">
-        <label>
-         <?php echo form_checkbox(['id'=>'inputConfCheckPass','class'=>'check']);?>
-         <?php echo form_label('See Confirm Password', 'labelcheckconfpass', [ 'class' => 'fontsmall','id' => 'labelCheckPass']);?>
-       </label>
-     </div>
-   </div>
- </div>
- <div class="errrow">
+      <select class="form-control" id="selectDivision" name="division">
+        <option value="Dhaka"<?php echo set_select('division', 'Dhaka', TRUE);?>>Dhaka</option>
+        <option value="Rajshahi"<?php echo set_select('division', 'Rajshahi');?>>Rajshahi</option>
+        <option value="Chittgong"<?php echo set_select('division', 'Chittgong');?>>Chittgong</option>
+      </select>
+    </div>
+  </div>
+  <div class="errrow">
    <div class="col-lg-2"></div>
-   <div class="col-lg-10"><p class="white" id="confirmpasswordErr" >*</p></div>
+   <div class="col-lg-10"><p class="white" id="divisionErr" >*</p></div>
  </div>
 
  <div class="form-group">
+  <label for="selectDistrict" class="col-lg-2 control-label">District</label>
+  <div class="col-lg-10">
+    <select class="form-control" id="selectDistrict" name="district">
+     <option value="Dhaka"<?php echo set_select('district', 'Dhaka', TRUE);?>>Dhaka</option>
+     <option value="Bogra"<?php echo set_select('district', 'Bogra');?>>Bogra</option>
+     <option value="Comilla"<?php echo set_select('district', 'Comilla');?>>Comilla</option>
+   </select>
+ </div>
+</div>
+<div class="errrow">
+ <div class="col-lg-2"></div>
+ <div class="col-lg-10"><p class="white" id="districtErr" >*</p></div>
+</div>
+
+
+<div class="form-group">
+  <label for="selectThana" class="col-lg-2 control-label">Thana</label>
+  <div class="col-lg-10">
+    <select class="form-control" id="selectThana" name="thana">
+     <option value="Khilkhet"<?php echo set_select('thana', 'Khilkhet', TRUE);?>>Khilkhet</option>
+     <option value="Banani"<?php echo set_select('thana', 'Banani');?>>Banani</option>
+     <option value="Adamdeghi"<?php echo set_select('thana', 'Adamdeghi');?>>Adamdeghi</option>
+   </select>
+ </div>
+</div>
+<div class="errrow">
+ <div class="col-lg-2"></div>
+ <div class="col-lg-10"><p class="white" id="thanaErr" >*</p></div>
+</div>
+
+<div class="form-group">
+  <label for="selectCity" class="col-lg-2 control-label">City</label>
+  <div class="col-lg-10">
+    <select class="form-control" id="selectCity" name="city">
+     <option value="Dhaka"<?php echo set_select('city', 'Dhaka', TRUE);?>>Dhaka</option>
+     <option value="Bogra"<?php echo set_select('city', 'Bogra');?>>Bogra</option>
+     <option value="Chittgong"<?php echo set_select('city', 'Chittgong');?>>Chittgong</option>
+     <option value="Dhaka">Dhaka</option>
+     <option value="Bogra">Bogra</option>
+     <option value="Chittgong">Chittagong</option>
+   </select>
+ </div>
+</div>
+<div class="errrow">
+ <div class="col-lg-2"></div>
+ <div class="col-lg-10"><p class="white" id="cityErr" >*</p></div>
+</div>
+
+
+<div class="form-group">
+  <label for="inputStreet" class="col-lg-2 control-label">Street</label>
+  <div class="col-lg-10">
+    <?php echo form_input(['name'=>'street','id'=>'inputStreet','class'=>'form-control','placeholder'=>'Street','value'=>set_value('street')]);?>
+  </div>
+</div>
+<div class="errrow">
+ <div class="col-lg-2"></div>
+ <div class="col-lg-10"><p class="white" id="streetErr" >*</p></div>
+</div>
+
+<div class="form-group">
+  <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+  <div class="col-lg-10">
+    <?php echo form_password(['name'=>'password','id'=>'inputPassword','class'=>'form-control','placeholder'=>'Password','value'=>set_value('password')]);?>
+    <div class="checkbox">
+      <label>
+       <?php echo form_checkbox(['id'=>'inputCheckPass','class'=>'check']);?>
+       <?php echo form_label('See Password', 'labelcheckpass', [ 'class' => 'fontsmall','id' => 'labelCheckPass']);?>
+     </label>
+   </div>
+ </div>
+</div>
+<div class="errrow">
+ <div class="col-lg-2"></div>
+ <div class="col-lg-10"><p class="white" id="passwordErr" >*</p></div>
+</div>
+
+<div class="form-group">
+  <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm Password</label>
+  <div class="col-lg-10">
+    <?php echo form_password(['name'=>'confirmpassword','id'=>'inputConfirmPassword','class'=>'form-control','placeholder'=>'Confirm Password','value'=>set_value('confirmpassword')]);?>
+    <div class="checkbox">
+      <label>
+       <?php echo form_checkbox(['id'=>'inputConfCheckPass','class'=>'check']);?>
+       <?php echo form_label('See Confirm Password', 'labelcheckconfpass', [ 'class' => 'fontsmall','id' => 'labelCheckPass']);?>
+     </label>
+   </div>
+ </div>
+</div>
+<div class="errrow">
+ <div class="col-lg-2"></div>
+ <div class="col-lg-10"><p class="white" id="confirmpasswordErr" >*</p></div>
+</div>
+
+<div class="form-group">
   <label for="inputAbout" class="col-lg-2 control-label">About</label>
   <div class="col-lg-10">
    <?php echo form_textarea(['name'=>'about','id'=>'inputAbout','rows'=>'3','class'=>'form-control','value'=>set_value('about')]);?>
@@ -250,7 +250,7 @@
 <div class="form-group">
   <label class="col-lg-2 control-label">Profile Picture</label>
   <div class="col-lg-10">
-    <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'imagebox1'])?>
+    <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox1'])?>
     <?php echo form_upload(['name'=>'profile','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('profile')]);?>
   </div>
 </div>
@@ -271,7 +271,7 @@
 <div class="col-lg-1"></div>
 </div>
 </div>
-<?php include('logo.php');?>
+<?php include('logosmall.php');?>
 <?php include('_footer.php');?>
 </body>
 </html>

@@ -2,20 +2,29 @@
 
 class User extends MY_Controller {
 	
-	public function index($id)
+	public function index()
 	{
-		$this->load->view('userprofile');
+		$data['username']=$this->uri->segment(3);
+		if($data['username']==$this->session->userdata('username'))
+		{
+			$data['activelink']='#profilelink';
+		}
+		$data['user_info']=$this->userModel->getUserInfoAll('user.username',$data['username']);
+		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		$this->load->view('userprofile',$data);
 	}
 	public function logout()
 	{
-		$this->session->unset_userdata('userid');
+		$array = array('username' => '', 'userid' => '', 'usertype' => '');
+		$this->session->unset_userdata($array);
+		$this->session->sess_destroy();
 		redirect('/Home/showlogin', 'refresh');
 	}
 	
 	public function showEditUser()
 	{
-		$data['id']=$this->uri->segment(3);
-		$data['user_info']=$this->basic_model->getWhere('*','id',$data['id'], 'user');
+		$data['username']=$this->uri->segment(3);
+		$data['user_info']=$this->basic_model->getWhere('*','username',$data['username'], 'user');
 		$this->load->view('edituser',$data);
 	}
 	
@@ -46,6 +55,7 @@ class User extends MY_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('userModel');
        	if(!$this->session->userdata('userid'))
 		{
 			redirect('/Home/showlogin', 'refresh');
