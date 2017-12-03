@@ -10,8 +10,8 @@
 				</a>
 			</div>
 			<input type="hidden" id="activelink" value=<?php if(isset($activelink)){
-					echo('"'.$activelink.'"');
-				}?>> 
+				echo('"'.$activelink.'"');
+			}?>> 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a id="homelink" href=<?php echo("'".$host."Home'");?> class="logolink activelink">Home<span class="sr-only">(current)</span></a></li> 
@@ -35,7 +35,7 @@
 							<li class='divider'></li>
 							<li><a href='".$host."User/index'>Add Organizaiton</a></li>
 							<li class='divider'></li>
-							<li><a data-toggle='modal' data-target='#deactivateModal'>Account Deactivate</a></li>
+							<li><a data-toggle='modal' data-target='#deactivateModal' >Account Deactivate</a></li>
 							</ul>
 							</li>
 							<li><a id='messagelink' data-toggle='modal' data-target='#messageModal' class='logolink'><div class=''>
@@ -99,6 +99,23 @@
 		</div>
 	</div>
 
-	<script type="text/javascript">
+	<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 style="color:red;">Confirm</h3>
+				</div>
+				<div class="modal-body">
+					Do you really want to do this?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<a class="btn btn-danger btn-ok">Delete</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<script type="text/javascript">
+		
 	</script>

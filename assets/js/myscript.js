@@ -6,6 +6,10 @@ $(function(){
 		$("#posterrors").html("");
 	});
 	
+	$('#confirm-delete').on('show.bs.modal', function(e) {
+		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+	});
+
 	function readURL1(input,show) {
 
 		if (input.files && input.files[0]) {
@@ -68,22 +72,22 @@ $(function(){
 	
 	//
 
-		$(function(){
-			active_link();
-			total_message();
-		});
+	$(function(){
+		active_link();
+		total_message();
+	});
 
-		function total_message()
-		{
-			$('#totalmessage').html('10');
-		}
+	function total_message()
+	{
+		$('#totalmessage').html('10');
+	}
 
-		function active_link()
-		{
-			$('.activelink').removeClass('activelink');
-			var alink=$('#activelink').val();
+	function active_link()
+	{
+		$('.activelink').removeClass('activelink');
+		var alink=$('#activelink').val();
 			//alert(alink);
 			$(alink).addClass('activelink');
 		}
-	
-});
+
+	});

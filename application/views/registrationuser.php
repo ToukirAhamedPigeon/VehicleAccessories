@@ -276,10 +276,14 @@
 </body>
 </html>
 
+<script src=<?php echo("'".$host."assets/third_party/ckeditor/ckeditor.js'"); ?>></script>
 
 <script type="text/javascript">
 	$(function(){
-		
+		CKEDITOR.replace('inputAbout');
 		
 	});
 </script>
+<!-- <button class="btn btn-default" data-href=<?php echo("'".$host."Home/registration'")?> data-toggle="modal" data-target="#confirm-delete">
+    Delete record
+</button> -->

@@ -115,6 +115,9 @@ p.noerror
 	color: black;
 	text-decoration: none; 
 	opacity: 0.9;
+	border-right: 2px solid #3b3b3b;
+	border-left:2px solid #3b3b3b; 
+	/*border-bottom: 2px solid white;*/
 }
 /*header*/
 .header{
