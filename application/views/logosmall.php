@@ -1,8 +1,8 @@
-<div class="logosmall shadow" style="padding-top: 1%; margin-bottom: -5%;" >
+<div class="logosmall shadow slidedown" style="padding-top: 1%; margin-bottom: -5%;" >
 	<nav class="navbar navbar-reverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<img src=<?php echo ("'".$host."assets/files/icons/car.ico'");?> style="" height='45px' width='45px'>
+				<img src=<?php echo ("'".$host."assets/files/icons/car.ico'");?> style="" height='45px' width='45px' class="slideleft">
 			</div>
 			<div class="navbar-header" style="margin-left:1%;">
 				<a class="navbar-brand biglink"  href=<?php echo("'".$host."'")?> style="font-size: 25px;">
@@ -33,7 +33,7 @@
 							<li><a href='".$host."User/showEditUser'>Edit Info</a></li>
 							<li><a href='".$host."User/showChangePassword'>Change Password</a></li>
 							<li class='divider'></li>
-							<li><a href='".$host."User/index'>Add Organizaiton</a></li>
+							<li><a href='".$host."Organization/showAddOrganization'>Add Organizaiton</a></li>
 							<li class='divider'></li>
 							<li><a data-toggle='modal' data-target='#deactivateModal' >Account Deactivate</a></li>
 							</ul>

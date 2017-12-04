@@ -10,7 +10,7 @@
    <div class="row">
      <div class="col-lg-1"></div>
      <div class="col-lg-10">
-       <?php echo form_open_multipart($host."Home/registration",['class'=>'form-horizontal backgray formmarpad shadow','id'=>'regform']) ?>
+       <?php echo form_open_multipart($host."Home/registration",['class'=>'form-horizontal backgray formmarpad shadow slideup','id'=>'regform']) ?>
        <fieldset>
         <legend>User Registration</legend>
 
@@ -48,7 +48,7 @@
      <div class="form-group">
       <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'firstname','id'=>'inputFirstName','class'=>'form-control','placeholder'=>'FirstName','value'=>set_value('firstname')]);?>
+        <?php echo form_input(['name'=>'firstname','id'=>'inputFirstName','required'=>TRUE,'class'=>'form-control','placeholder'=>'FirstName','value'=>set_value('firstname')]);?>
       </div>
     </div>
     <div class="errrow">
@@ -59,7 +59,7 @@
     <div class="form-group">
       <label for="inputLastName" class="col-lg-2 control-label">Last Name</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'lastname','id'=>'inputLastName','class'=>'form-control','placeholder'=>'LastName','value'=>set_value('lastname')]);?>
+        <?php echo form_input(['name'=>'lastname','id'=>'inputLastName','required'=>TRUE,'class'=>'form-control','placeholder'=>'LastName','value'=>set_value('lastname')]);?>
       </div>
     </div> 
     <div class="errrow">
@@ -70,7 +70,7 @@
     <div class="form-group">
       <label for="inputUserName" class="col-lg-2 control-label">User Name</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'username','id'=>'inputUserName','class'=>'form-control','placeholder'=>'UserName','value'=>set_value('username')]);?>
+        <?php echo form_input(['name'=>'username','id'=>'inputUserName','required'=>TRUE,'class'=>'form-control','placeholder'=>'UserName','value'=>set_value('username')]);?>
       </div>
     </div>
     <div class="errrow">
@@ -81,7 +81,7 @@
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'email','id'=>'inputEmail','class'=>'form-control','placeholder'=>'Email','value'=>set_value('email')]);?>
+        <?php echo form_input(['type'=>'email','name'=>'email','id'=>'inputEmail','required'=>TRUE,'class'=>'form-control','placeholder'=>'Email','value'=>set_value('email')]);?>
       </div>
     </div>
     <div class="errrow">
@@ -103,7 +103,7 @@
     <div class="form-group">
       <label for="inputPhone" class="col-lg-2 control-label">Phone</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'phone','id'=>'inputPhone','class'=>'form-control','placeholder'=>'Phone','value'=>set_value('phone')]);?>
+        <?php echo form_input(['name'=>'phone','id'=>'inputPhone','required'=>TRUE,'class'=>'form-control','placeholder'=>'Phone','value'=>set_value('phone')]);?>
       </div>
     </div>
     <div class="errrow">
@@ -194,7 +194,7 @@
 <div class="form-group">
   <label for="inputStreet" class="col-lg-2 control-label">Street</label>
   <div class="col-lg-10">
-    <?php echo form_input(['name'=>'street','id'=>'inputStreet','class'=>'form-control','placeholder'=>'Street','value'=>set_value('street')]);?>
+    <?php echo form_input(['name'=>'street','id'=>'inputStreet','required'=>TRUE,'class'=>'form-control','placeholder'=>'Street','value'=>set_value('street')]);?>
   </div>
 </div>
 <div class="errrow">
@@ -205,7 +205,7 @@
 <div class="form-group">
   <label for="inputPassword" class="col-lg-2 control-label">Password</label>
   <div class="col-lg-10">
-    <?php echo form_password(['name'=>'password','id'=>'inputPassword','class'=>'form-control','placeholder'=>'Password','value'=>set_value('password')]);?>
+    <?php echo form_password(['name'=>'password','id'=>'inputPassword','required'=>TRUE,'class'=>'form-control','placeholder'=>'Password','value'=>set_value('password')]);?>
     <div class="checkbox">
       <label>
        <?php echo form_checkbox(['id'=>'inputCheckPass','class'=>'check']);?>
@@ -222,7 +222,7 @@
 <div class="form-group">
   <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm Password</label>
   <div class="col-lg-10">
-    <?php echo form_password(['name'=>'confirmpassword','id'=>'inputConfirmPassword','class'=>'form-control','placeholder'=>'Confirm Password','value'=>set_value('confirmpassword')]);?>
+    <?php echo form_password(['name'=>'confirmpassword','id'=>'inputConfirmPassword','required'=>TRUE,'class'=>'form-control','placeholder'=>'Confirm Password','value'=>set_value('confirmpassword')]);?>
     <div class="checkbox">
       <label>
        <?php echo form_checkbox(['id'=>'inputConfCheckPass','class'=>'check']);?>
@@ -251,7 +251,7 @@
   <label class="col-lg-2 control-label">Profile Picture</label>
   <div class="col-lg-10">
     <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox1'])?>
-    <?php echo form_upload(['name'=>'profile','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('profile')]);?>
+    <?php echo form_upload(['name'=>'profile','id'=>'file1','required'=>TRUE,'class'=>'form-control inputFile', 'accept'=>"image/*", 'value'=>set_value('profile')]);?>
   </div>
 </div>
 <div class="errrow">

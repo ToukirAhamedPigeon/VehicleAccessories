@@ -60,6 +60,11 @@ $(function(){
 		{
 			id=$('#inputConfirmPassword');
 		}
+		else if($(this).attr('id')==='inputOldCheckPass')
+		{
+			id=$('#inputOldPassword');
+		}
+
 		if(id.attr('type')==='password')
 		{
 			id.attr('type','text');

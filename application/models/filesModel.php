@@ -14,9 +14,10 @@ class filesModel extends MY_Model{
 	{
 		return $this->db->insert('files',$array);
 	}
-	public function updateFile($fileid,$file)
+	public function updateFile($fileid,$data)
 	{
-		
+		$this->db->where('fileid', $fileid);
+       return $this->db->update('files', $data); 
 	}
 	public function deleteFile($fileid)
 	{

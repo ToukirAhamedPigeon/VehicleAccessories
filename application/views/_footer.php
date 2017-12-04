@@ -1,8 +1,8 @@
-<div class="footer">
+<div class="footer slideup">
 	<div class="row">
 		<div class="col-lg-12">
 			<a href=<?php echo("'".$host."'")?>>
-			<img style="text-align: center;" src=<?php echo ("'".$host."assets/files/icons/car.ico'");?> height='70px' width='70px'></a>
+			<img style="text-align: center;" src=<?php echo ("'".$host."assets/files/icons/car.ico'");?> height='70px' width='70px' class='slideleft'></a>
 		</div>
 	</div>
 	<div class="row">

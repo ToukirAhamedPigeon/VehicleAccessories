@@ -65,9 +65,9 @@ p.noerror
 	text-align: left;
 	color:#ffffff;
 	overflow: hidden;
-    position: fixed; 
-    top: 0;
-    width: 100%; 
+	position: fixed; 
+	top: 0;
+	width: 100%; 
 }
 
 .logosmall{
@@ -75,9 +75,17 @@ p.noerror
 	padding: .2%;
 	text-align: left;
 	color:#ffffff;
-    position: fixed; 
-    top: 0;
-    width: 100%; 
+	position: fixed; 
+	top: 0;
+	width: 100%; 
+	top: -120px;
+	/*width: 100px;
+	height: 100px;*/
+	/*background: blue;*/
+	-webkit-animation: logosmall 1s forwards;
+	-webkit-animation-delay: 1s;
+	animation: logosmall 1s forwards;
+	animation-delay: 1s;
 }
 
 
@@ -122,9 +130,9 @@ p.noerror
 /*header*/
 .header{
 	text-align: left;
-    position: fixed; 
-    top: 0;
-    width: 100%; 
+	position: fixed; 
+	top: 0;
+	width: 100%; 
 	margin-top: 4.2%;
 }
 /*footer*/
@@ -133,4 +141,57 @@ p.noerror
 	padding: 20px;
 	text-align: center;
 	color:#ffffff;
+}
+
+/*Animation*/
+
+.slideup
+{
+	position: relative;
+	top: 700px;
+	/*width: 100px;
+	height: 100px;*/
+	/*background: blue;*/
+	-webkit-animation: slideup 1s forwards;
+	-webkit-animation-delay: 1s;
+	animation: slideup 1s forwards;
+	animation-delay: 1s;
+}
+
+@-webkit-keyframes slideup {
+	100% { top: 0; }
+}
+
+@keyframes slideup {
+	100% { top: 0; }
+}
+
+.slideleft
+{
+	position: relative;
+	left: -100px;
+	/*width: 100px;
+	height: 100px;*/
+	/*background: blue;*/
+	-webkit-animation: slideleft 1s forwards;
+	-webkit-animation-delay: 1s;
+	animation: slideleft 1s forwards;
+	animation-delay: 1.5s;
+}
+
+@-webkit-keyframes slideleft {
+	100% { left: 0; }
+}
+
+@keyframes slideleft {
+	100% { left: 0; }
+}
+
+
+@-webkit-keyframes logosmall {
+	100% { top: 0; }
+}
+
+@keyframes logosmall {
+	100% { top: 0; }
 }

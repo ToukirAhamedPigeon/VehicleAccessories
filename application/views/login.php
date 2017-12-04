@@ -10,7 +10,7 @@
    <div class="row">
      <div class="col-lg-1"></div>
      <div class="col-lg-10">
-       <?php echo form_open($host."Home/login",['class'=>'form-horizontal backgray formmarpad shadow','id'=>'regform']) ?>
+       <?php echo form_open($host."Home/login",['class'=>'form-horizontal backgray formmarpad shadow slideup','id'=>'regform']) ?>
        <fieldset>
         <legend>Log In</legend>
         

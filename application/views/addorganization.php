@@ -291,7 +291,17 @@
     <div class="col-lg-1"></div>
     </div>
     </div>
-    <?php include('logo.php');?>
+    <?php include('logosmall.php');?>
     <?php include('_footer.php');?>
   </body>
 </html>
+
+<script src=<?php echo("'".$host."assets/third_party/ckeditor/ckeditor.js'"); ?>></script>
+
+<script type="text/javascript">
+  $(function(){
+    CKEDITOR.replace('inputAbout');
+    CKEDITOR.replace('inputRules');
+    
+  });
+</script>

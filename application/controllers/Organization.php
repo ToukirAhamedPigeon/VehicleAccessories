@@ -5,7 +5,7 @@ class Organization extends MY_Controller {
 	public function index($id)
 	{
 		if($this->valid_normal()){
-		$this->load->view('organizationprofile');
+			$this->load->view('organizationprofile');
 		}
 		else
 		{
@@ -14,7 +14,7 @@ class Organization extends MY_Controller {
 	}
 	
 	private function valid_normal()
-		{
+	{
 		if(!$this->session->userdata('userid'))
 		{
 			return FALSE;
@@ -24,10 +24,12 @@ class Organization extends MY_Controller {
 			return TRUE;
 		}
 	}
-		
+
 	public function showAddOrganization()
 	{
-		$this->load->view('addorganization');
+		//$this->load->model('userModel');
+		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		$this->load->view('addorganization',$data);
 	}
 	
 	public function addOrganization()
@@ -55,5 +57,5 @@ class Organization extends MY_Controller {
 	{
 		
 	}
-		
+
 }
