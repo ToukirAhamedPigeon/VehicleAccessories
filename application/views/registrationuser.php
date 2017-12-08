@@ -251,7 +251,7 @@
   <label class="col-lg-2 control-label">Profile Picture</label>
   <div class="col-lg-10">
     <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox1'])?>
-    <?php echo form_upload(['name'=>'profile','id'=>'file1','required'=>TRUE,'class'=>'form-control inputFile', 'accept'=>"image/*", 'value'=>set_value('profile')]);?>
+    <?php echo form_upload(['name'=>'profile','id'=>'file1','required'=>TRUE,'class'=>'form-control inputFile', 'accept'=>'image/*', 'value'=>set_value('profile')]);?>
   </div>
 </div>
 <div class="errrow">
@@ -275,8 +275,6 @@
 <?php include('_footer.php');?>
 </body>
 </html>
-
-<script src=<?php echo("'".$host."assets/third_party/ckeditor/ckeditor.js'"); ?>></script>
 
 <script type="text/javascript">
 	$(function(){

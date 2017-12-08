@@ -103,12 +103,3 @@
 	<?php include('_footer.php');?>
 </body>
 </html>
-
-<script src=<?php echo("'".$host."assets/third_party/ckeditor/ckeditor.js'"); ?>></script>
-
-<script type="text/javascript">
-	$(function(){
-		CKEDITOR.replace('inputAbout');
-
-	});
-</script>

@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<title>Report</title>
-		<?php include('bundle.php')?>
+		<?php include('bundle.php');?>
 	</head>
 	<body>
 	   <div class="container">

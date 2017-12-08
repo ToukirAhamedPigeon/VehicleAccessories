@@ -130,7 +130,6 @@ public function changePassword()
 		{
 			if($this->form_validation->run('changePassword') == TRUE)
 			{
-				//echo "ok"; die();
 				$userupdate = array(
 					'password' => $post['password']
 				);
@@ -170,7 +169,7 @@ public function changePassword()
 
 public function deactivate()
 {
-
+     
 }
 
 public function activate()

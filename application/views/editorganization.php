@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<title>Edit Organization</title>
-		<?php include('bundle.php')?>
+		<?php include('bundle.php');?>
 	</head>
 	<body class="font">
 	<div class="container topmargin">
@@ -286,7 +286,7 @@
 		<div class="col-lg-1"></div>
 		</div>
 		</div>
-		<?php include('logo.php')?>
-		<?php include('_footer.php')?>
+		<?php include('logo.php');?>
+		<?php include('_footer.php');?>
 	</body>
 </html>

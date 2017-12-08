@@ -1,4 +1,4 @@
-<div class="footer slideup">
+<div class="footer slideup" style="bottom: 0px;">
 	<div class="row">
 		<div class="col-lg-12">
 			<a href=<?php echo("'".$host."'")?>>

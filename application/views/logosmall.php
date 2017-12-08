@@ -17,10 +17,11 @@
 					<li class="active"><a id="homelink" href=<?php echo("'".$host."Home'");?> class="logolink activelink">Home<span class="sr-only">(current)</span></a></li> 
 					<li><a id="aboutlink" href=<?php echo("'".$host."Home/aboutus'");?> class="logolink">About Us</a></li>
 				</ul>
-				<form action=<?php echo($host."Search")?> class="navbar-form navbar-left" method="post" role="search">
+				<form action=<?php echo($host."Search");?> class="navbar-form navbar-left" method="post" role="search">
 					<div class="form-group">
 						<input type="text" id="searchAll" class="form-control" placeholder="Search">
 					</div>
+					<input type="hidden" name="searching" id="searching" value="Product">
 					<button type="submit" class="btn btn-default">Search</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">

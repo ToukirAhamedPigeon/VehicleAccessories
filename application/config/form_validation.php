@@ -162,6 +162,59 @@ $config = array(
     'label' => 'Password Confirmation',
     'rules' => 'required|matches[password]'
   )
+),
+ 'addOrganization'=>array(
+  array(
+    'field' => 'country',
+    'label' => 'Country',
+    'rules' => 'required'
+  ),
+  array(
+    'field' => 'district',
+    'label' => 'District',
+    'rules' => 'required'
+  ),
+  array(
+    'field' => 'division',
+    'label' => 'Division',
+    'rules' => 'required'
+  ),
+  array(
+    'field' => 'thana',
+    'label' => 'Thana',
+    'rules' => 'required'
+  ),
+  array(
+    'field' => 'city',
+    'label' => 'City',
+    'rules' => 'required'
+  ),
+ 
+  array(
+    'field' => 'name',
+    'label' => 'Organization Name',
+    'rules' => 'required|alpha_numeric|trim|is_unique[organization.name]'
+  ),
+  array(
+    'field' => 'phone',
+    'label' => 'Phone',
+    'rules' => 'required|numeric|min_length[11]|max_length[14]|trim'
+  ),
+  array(
+    'field' => 'street',
+    'label' => 'Street',
+    'rules' => 'required'
+  ),
+  array(
+    'field' => 'email',
+    'label' => 'Email',
+    'rules' => 'required|valid_email'
+  ),
+   array(
+    'field' => 'website',
+    'label' => 'Website',
+    'rules' => 'valid_url'
+  )
 )
 
 );

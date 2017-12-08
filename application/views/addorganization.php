@@ -6,7 +6,7 @@
     <?php include('bundle.php');?>
   </head>
   <body class="font">
-  <div class="container topmargin">
+  <div class="container topmargin slideup">
   <div class="row">
   <div class="col-lg-1"></div>
   <div class="col-lg-10">
@@ -24,20 +24,14 @@
     elseif(isset($upload_error))
     {
       echo ' <button type="button" id="errorclose" class="close" data-dismiss="alert">&times</button><div class="alert alert-dismissible alert-danger fontsmall"><strong>Oops!</strong></br>'.$upload_error.'</div>';
-    }
-    
+    } 
     ?>
-   
-    </span>
-    
-     
-    
-    
-    
+   </span>
+
       <div class="form-group">
       <label for="inputName" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'name','id'=>'inputName','class'=>'form-control','placeholder'=>'Name','value'=>set_value('name')]);?>
+        <?php echo form_input(['name'=>'name','required'=>TRUE,'id'=>'inputName','class'=>'form-control','placeholder'=>'Name','value'=>set_value('name')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -45,12 +39,10 @@
       <div class="col-lg-10"><p class="white" id="nameErr" >*</p></div>
     </div>
   
-  
-  
      <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'email','id'=>'inputEmail','class'=>'form-control','placeholder'=>'Email','value'=>set_value('email')]);?>
+        <?php echo form_input(['type'=>'email','name'=>'email','required'=>TRUE,'id'=>'inputEmail','class'=>'form-control','placeholder'=>'Email','value'=>set_value('email')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -62,7 +54,7 @@
   <div class="form-group">
       <label for="inputWebsite" class="col-lg-2 control-label">Website</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'website','id'=>'inputWebsite','class'=>'form-control','placeholder'=>'Website','value'=>set_value('website')]);?>
+        <?php echo form_input(['type'=>'url','name'=>'website','id'=>'inputWebsite','class'=>'form-control','placeholder'=>'Website','value'=>set_value('website')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -73,7 +65,7 @@
       <div class="form-group">
       <label for="inputPhone" class="col-lg-2 control-label">Phone</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'phone','id'=>'inputPhone','class'=>'form-control','placeholder'=>'Phone','value'=>set_value('phone')]);?>
+        <?php echo form_input(['name'=>'phone','required'=>TRUE,'id'=>'inputPhone','class'=>'form-control','placeholder'=>'Phone','value'=>set_value('phone')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -223,7 +215,7 @@
       <label class="col-lg-2 control-label">Logo</label>
       <div class="col-lg-10">
       <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'100','height'=>'100','id'=>'logobox'])?>
-       <?php echo form_upload(['name'=>'logo','id'=>'logo','class'=>'form-control inputFile', 'value'=>set_value('logo')]);?>
+       <?php echo form_upload(['name'=>'logo','id'=>'logo','class'=>'form-control inputFile', 'accept'=>'image/*', 'value'=>set_value('logo')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -235,7 +227,7 @@
       <label class="col-lg-2 control-label">Image Box 1</label>
       <div class="col-lg-10">
      <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox1'])?>
-       <?php echo form_upload(['name'=>'imagebox1','id'=>'file1','class'=>'form-control inputFile', 'value'=>set_value('imagebox2')]);?>
+       <?php echo form_upload(['name'=>'imagebox1','id'=>'file1','class'=>'form-control inputFile', 'accept'=>'image/*', 'value'=>set_value('imagebox1')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -247,7 +239,7 @@
       <label class="col-lg-2 control-label">Image Box 2</label>
       <div class="col-lg-10">
     <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox2'])?>
-       <?php echo form_upload(['name'=>'imagebox2','id'=>'file2','class'=>'form-control inputFile', 'value'=>set_value('imagebox2')]);?>
+       <?php echo form_upload(['name'=>'imagebox2','id'=>'file2','class'=>'form-control inputFile', 'accept'=>'image/*', 'value'=>set_value('imagebox2')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -259,7 +251,7 @@
       <label class="col-lg-2 control-label">Image Box 3</label>
       <div class="col-lg-10">
      <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox3'])?>
-       <?php echo form_upload(['name'=>'imagebox3','id'=>'file3','class'=>'form-control inputFile', 'value'=>set_value('imagebox3')]);?>
+       <?php echo form_upload(['name'=>'imagebox3','id'=>'file3','class'=>'form-control inputFile', 'accept'=>'image/*', 'value'=>set_value('imagebox3')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -271,7 +263,7 @@
       <label class="col-lg-2 control-label">Image Box 4</label>
       <div class="col-lg-10">
      <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'200','height'=>'200','id'=>'Imagebox4'])?>
-       <?php echo form_upload(['name'=>'imagebox4','id'=>'file4','class'=>'form-control inputFile', 'value'=>set_value('imagebox4')]);?>
+       <?php echo form_upload(['name'=>'imagebox4','id'=>'file4','class'=>'form-control inputFile', 'accept'=>'image/*', 'value'=>set_value('imagebox4')]);?>
       </div>
     </div>
      <div class="errrow">
@@ -295,8 +287,6 @@
     <?php include('_footer.php');?>
   </body>
 </html>
-
-<script src=<?php echo("'".$host."assets/third_party/ckeditor/ckeditor.js'"); ?>></script>
 
 <script type="text/javascript">
   $(function(){

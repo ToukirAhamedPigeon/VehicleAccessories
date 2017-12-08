@@ -9,6 +9,13 @@ class Search extends MY_Controller {
 			$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
 		}
 		$data['activelink']='';
+		if($_POST)
+		{
+			$post=$this->input->post();
+			$this->session->set_userdata('activesearch',$post['searching']);
+		}
+		//$this->session->set_userdata('activesearch',);
+		$data['activesearch']=$this->session->userdata('activesearch');
 		$this->load->view('search',$data);
 	}
 	

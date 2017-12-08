@@ -11,7 +11,7 @@
 	background: #F6F6F6;
 }
 .formmarpad{
-	margin: 25px ;
+	margin: 25px;
 	padding: 25px;
 }
 .imagebox{
@@ -27,7 +27,7 @@
 	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .invisible{
-	visibility: none;
+	display: none;
 }
 .center
 {
@@ -90,7 +90,7 @@ p.noerror
 
 
 .topmargin{
-	margin-top: 6%; 
+	margin-top: 8%; 
 }
 .logolink{
 	color: white;
@@ -195,3 +195,9 @@ p.noerror
 @keyframes logosmall {
 	100% { top: 0; }
 }
+
+/*solve*/
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+	z-index: 0 !important;
+}
+/*solve*/
