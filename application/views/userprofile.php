@@ -11,6 +11,7 @@
 		echo '<pre>';
 		print_r($user_info);
 		print_r($current_user_info);
+		print_r($orglist);
 		echo $user_info[0]['firstname']; ?>
 	</div>
 	<?php include('logosmall.php');?>

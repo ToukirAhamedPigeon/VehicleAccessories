@@ -11,6 +11,7 @@ class User extends MY_Controller {
 		}
 		$data['user_info']=$this->userModel->getUserInfoAll('user.username',$data['username']);
 		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		$data['orglist']=$this->organizationModel->getOrganizationInfoAll('ownerid',$this->session->userdata('userid'));
 		$this->load->view('userprofile',$data);
 	}
 	public function logout()
@@ -23,14 +24,14 @@ class User extends MY_Controller {
 	
 	public function showEditUser()
 	{
-		$data['activelink']='#aboutlink';
+		$data['activelink']='#actionlink';
 		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
 		$this->load->view('edituser',$data);
 	}
 	
 	public function editUser()
 	{
-		$data['activelink']='#aboutlink';
+		$data['activelink']='#actionlink';
 		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
 		if($_POST){
 			if ($this->form_validation->run('editUser') == FALSE)
@@ -180,6 +181,7 @@ public function activate()
 public function __construct() {
 	parent::__construct();
 	$this->load->model('userModel');
+	$this->load->model('organizationModel');
 	if(!$this->session->userdata('userid'))
 	{
 		redirect('/Home/showlogin', 'refresh');

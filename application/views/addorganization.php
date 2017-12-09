@@ -25,6 +25,12 @@
     {
       echo ' <button type="button" id="errorclose" class="close" data-dismiss="alert">&times</button><div class="alert alert-dismissible alert-danger fontsmall"><strong>Oops!</strong></br>'.$upload_error.'</div>';
     } 
+     if($feedback=$this->session->flashdata('feedback'))
+         {
+           echo ' <div class="alert alert-dismissible alert-success fontsmall">
+           <button type="button" class="close" data-dismiss="alert">&times;</button>'.$feedback.
+           '</div>';
+         }
     ?>
    </span>
 
@@ -141,9 +147,6 @@
            <option value="Dhaka"<?php echo set_select('city', 'Dhaka', TRUE);?>>Dhaka</option>
             <option value="Bogra"<?php echo set_select('city', 'Bogra');?>>Bogra</option>
             <option value="Chittgong"<?php echo set_select('city', 'Chittgong');?>>Chittgong</option>
-          <option value="Dhaka">Dhaka</option>
-          <option value="Bogra">Bogra</option>
-          <option value="Chittgong">Chittagong</option>
         </select>
       </div>
     </div>

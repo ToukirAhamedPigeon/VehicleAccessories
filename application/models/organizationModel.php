@@ -18,6 +18,14 @@ class organizationModel extends MY_Model{
 	{
 		
 	}
+
+	public function getOrganizationInfoAll($field,$value)
+	{
+		 $this->db->select('*');
+		 $this->db->join('files', 'organization.id=files.fileholder AND files.holdertype="organization" AND filestatus="logo"', 'left');
+       $result = $this->db->get_where('organization',array($field =>$value));
+       return $result->result_array();
+	}
 	
 	public function addOrganization($array)
 	{

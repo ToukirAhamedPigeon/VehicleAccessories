@@ -23,7 +23,7 @@ class productModel extends MY_Model{
 	
 	public function addProduct($array)
 	{
-		
+		return $this->db->insert('product',$array);
 	}
 	
 	public function editProduct($array)
@@ -33,7 +33,10 @@ class productModel extends MY_Model{
 	
 	public function getProduct($id)
 	{
-		
+		$this->db->select('*');
+        $this->db->order_by('id', 'desc');
+        $result = $this->db->get_where('product',array('organizationid' =>$id));
+        return $result->result_array();
 	}
 	
 		
