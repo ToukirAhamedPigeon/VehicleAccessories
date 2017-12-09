@@ -189,91 +189,85 @@ class Organization extends MY_Controller {
 
 	public function editOrganization()
 	{
-	// 	if($_POST)
-	// 	{
-	// 		$orgname = $this->uri->segment(3);
-	// 		if($orgname!='')
-	// 		{
-	// 			$organizationinfo=$this->organizationModel->getOrganizationInfoAll('name',$orgname);
-	// 			if($organizationinfo!=null)
-	// 			{
-	// 				if($organizationinfo[0]['ownerid']==$this->session->userdata['userid'])
-	// 				{
-	// 					if ($this->form_validation->run('editOrganization') == FALSE)
-	// 					{
-	// 						$data['orginfo']=$organizationinfo;
-	// 						$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
-	// 						$this->load->view('editorganization',$data);
-	// 					}
-	// 					else
-	// 					{
-	// 						$post=$this->input->post();
-	// 						$orgdata['id']=$$organizationinfo[0]['id'];
-	// 						$orgdata['name']=$post['name'];
-	// 						$orgdata['website']=$post['website'];
-	// 						$orgdata['latitude']=$post['latitude'];
-	// 						$orgdata['longitude']=$post['longitude'];
-	// 						$orgdata['about']=$post['about'];
-	// 						$orgdata['rules']=$post['rules'];
-	// 						$orgdata['phone']=$post['phone'];
-	// 						$orgdata['street']=$post['street'];
-	// 						$orgdata['thana']=$post['thana'];
-	// 						$orgdata['city']=$post['city'];
-	// 						$orgdata['district']=$post['district'];
-	// 						$orgdata['division']=$post['division'];
-	// 						$orgdata['country']=$post['country'];
-	// 						$orgdata['email']=$post['email'];
-	// 						if($this->organizationModel->editOrganization($orgdata))
-	// 						{
-
-	// 						}
-	// 						else
-	// 						{
-
-	// 						}
-	// 					}
-	// 				}
-	// 			}
-	// 			else
-	// 			{
-	// 				redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
-	// 			}
-	// 		}
-	// 		else
-	// 		{
-	// 			redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
-	// 		}
-	// 	}
-	// 	else
-	// 	{
-	// 		redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
-	// 	}
-	// }
-	// else
-	// {
-	// 	redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
-	// }
-}
-
-
-public function deactivate($id)
-{
-
-}
-
-public function activate()
-{
-
-}
-
-public function __construct() {
-	parent::__construct();
-	$this->load->model('userModel');
-	$this->load->model('organizationModel');
-	if(!$this->session->userdata('userid'))
-	{
-		redirect('/Home/showlogin', 'refresh');
+		if($_POST)
+		{
+			$orgname = $this->uri->segment(3);
+			if($orgname!='')
+			{
+				$organizationinfo=$this->organizationModel->getOrganizationInfoAll('name',$orgname);
+				if($organizationinfo!=null)
+				{
+					if($organizationinfo[0]['ownerid']==$this->session->userdata['userid'])
+					{
+						if ($this->form_validation->run('editOrganization') == FALSE)
+						{
+							$data['orginfo']=$organizationinfo;
+							$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+							$this->load->view('editorganization',$data);
+						}
+						else
+						{
+							$post=$this->input->post();
+							$orgdata['id']=$$organizationinfo[0]['id'];
+							$orgdata['name']=$post['name'];
+							$orgdata['website']=$post['website'];
+							$orgdata['latitude']=$post['latitude'];
+							$orgdata['longitude']=$post['longitude'];
+							$orgdata['about']=$post['about'];
+							$orgdata['rules']=$post['rules'];
+							$orgdata['phone']=$post['phone'];
+							$orgdata['street']=$post['street'];
+							$orgdata['thana']=$post['thana'];
+							$orgdata['city']=$post['city'];
+							$orgdata['district']=$post['district'];
+							$orgdata['division']=$post['division'];
+							$orgdata['country']=$post['country'];
+							$orgdata['email']=$post['email'];
+							if($this->organizationModel->editOrganization($orgdata))
+							{
+								echo 'something';
+							}
+							else
+							{
+								echo 'anything';
+							}
+						}
+					}
+				}
+				else
+				{
+					redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+				}
+			}
+			else
+			{
+				redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+			}
+		}
+		else
+		{
+			redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+		}
 	}
-}
 
+
+	public function deactivate($id)
+	{
+
+	}
+
+	public function activate()
+	{
+
+	}
+
+	public function __construct() {
+		parent::__construct();
+		$this->load->model('userModel');
+		$this->load->model('organizationModel');
+		if(!$this->session->userdata('userid'))
+		{
+			redirect('/Home/showlogin', 'refresh');
+		}
+	}
 }
