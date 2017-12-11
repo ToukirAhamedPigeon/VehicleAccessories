@@ -36,7 +36,8 @@
       <div class="form-group">
       <label for="inputName" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'name','required'=>TRUE,'id'=>'inputName','class'=>'form-control','placeholder'=>'Name','value'=>set_value('name',$orginfo[0]['name'])]);?>
+        <label class="form-control"><?=$orginfo[0]['name']?></label>
+        <?php echo form_input(['type'=>'hidden','name'=>'name','required'=>TRUE,'id'=>'inputName','class'=>'form-control','placeholder'=>'Name','value'=>set_value('name',$orginfo[0]['name'])]);?>
       </div>
     </div>
      <div class="errrow">
@@ -216,7 +217,7 @@
     <div class="form-group">
       <label class="col-lg-2 control-label">Logo</label>
       <div class="col-lg-10">
-      <?php echo img(['alt'=>'','class'=>'imagebox','width'=>'100','height'=>'100','id'=>'logobox'])?>
+      <?php echo img(['src'=>base_url().$orginfo[0]['filepath'],'alt'=>'','class'=>'imagebox','width'=>'100','height'=>'100','id'=>'logobox'])?>
        <?php echo form_upload(['name'=>'logo','id'=>'logo','class'=>'form-control inputFile', 'accept'=>'image/*', 'value'=>set_value('logo')]);?>
       </div>
     </div>
@@ -228,7 +229,7 @@
     <div class="form-group right">
       <div class="col-lg-10 col-lg-offset-2">
         <?php echo form_reset(['id'=>'formReset','class'=>'btn btn-default','value'=>'Reset'])?>
-        <?php echo form_submit(['id'=>'formSubmit','class'=>'btn btn-primary','value'=>'Add'])?>
+        <?php echo form_submit(['id'=>'formSubmit','class'=>'btn btn-primary','value'=>'Edit'])?>
       </div>
     </div>
   </fieldset>

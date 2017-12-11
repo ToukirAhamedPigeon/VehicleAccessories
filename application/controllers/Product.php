@@ -4,7 +4,12 @@ class Product extends MY_Controller {
 
 	public function index()
 	{
-		$this->load->view('productprofile');
+		$productid=$this->uri->segment(3);
+		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		$data['productinfo']=$this->productModel->getProductInfoAll('id',$productid);
+		$data['organizationinfo']=$this->organizationModel->getOrganizationInfoAll('id',$data['productinfo'][0]['organizationid']);
+		$data['imagelist']=$this->filesModel->getPhotos($data['productinfo'][0]['id'],'product');
+		$this->load->view('productprofile',$data);
 	}
 	
 
@@ -24,12 +29,12 @@ class Product extends MY_Controller {
 				}
 				else
 				{
-				redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+					redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
 				}
 			}
 			else
 			{
-			redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+				redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
 			}
 		}
 		else
@@ -48,7 +53,7 @@ class Product extends MY_Controller {
 			if ($this->form_validation->run('addProduct') == FALSE)
 			{
 				$data['orgid']=$organizationinfo[0]['ownerid'];
-					$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+				$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
 				$this->load->view('addproduct',$data);
 			}
 			else
@@ -71,7 +76,7 @@ class Product extends MY_Controller {
 					'allowed_types'=>'jpg|gif|png|jpeg',
 					'max_size'=>'10240'];
 					$this->load->library('upload',$config);
-					if(isset($_FILES['logo']))
+					if(file_exists($_FILES['logo']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].$post['orgid'].getDateTime(2).'logo';
 						$config['file_name'] = $filename;
@@ -86,7 +91,7 @@ class Product extends MY_Controller {
 							$this->filesModel->uploadFile($fileinfo);
 						}
 					}
-					if(isset($_FILES['imagebox1']))
+					if(file_exists($_FILES['imagebox1']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].$post['orgid'].getDateTime(2).'image1';
 						$config['file_name'] = $filename;
@@ -101,7 +106,7 @@ class Product extends MY_Controller {
 							$this->filesModel->uploadFile($fileinfo);
 						}
 					}
-					if(isset($_FILES['imagebox2']))
+					if(file_exists($_FILES['imagebox2']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].$post['orgid'].getDateTime(2).'image2';
 						$config['file_name'] = $filename;
@@ -116,7 +121,7 @@ class Product extends MY_Controller {
 							$this->filesModel->uploadFile($fileinfo);
 						}
 					}
-					if(isset($_FILES['imagebox3']))
+					if(file_exists($_FILES['imagebox3']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].$post['orgid'].getDateTime(2).'image3';
 						$config['file_name'] = $filename;
@@ -131,7 +136,7 @@ class Product extends MY_Controller {
 							$this->filesModel->uploadFile($fileinfo);
 						}
 					}
-					if(isset($_FILES['imagebox4']))
+					if(file_exists($_FILES['imagebox4']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].$post['orgid'].getDateTime(2).'image4';
 						$config['file_name'] = $filename;
@@ -160,12 +165,105 @@ class Product extends MY_Controller {
 	
 	public function showEditProduct($id)
 	{
-		$this->load->view('editproduct');
+		$productid=$this->uri->segment(3);
+		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		$data['productinfo']=$this->productModel->getProductInfoAll('id',$productid);
+		$data['organizationinfo']=$this->organizationModel->getOrganizationInfoAll('id',$data['productinfo'][0]['organizationid']);
+		$this->load->view('editproduct',$data);
 	}
 	
 	public function editProduct()
 	{
-		
+		if($_POST)
+		{
+			$productid=$this->uri->segment(3);
+			if($productid!='')
+			{
+				$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+				$data['productinfo']=$this->productModel->getProductInfoAll('id',$productid);
+				$data['organizationinfo']=$this->organizationModel->getOrganizationInfoAll('id',$data['productinfo'][0]['organizationid']);
+				if($data['organizationinfo']!=null)
+				{
+					if($data['organizationinfo'][0]['ownerid']==$this->session->userdata['userid'])
+					{
+						if ($this->form_validation->run('editProduct') == FALSE)
+						{
+							$this->load->view('editproduct',$data);
+						}
+						else
+						{
+							$post=$this->input->post();
+							$prodata['id']=$productid;
+							$prodata['name']=$post['name'];
+							$prodata['organizationid']=$post['orgid'];
+							$prodata['category']=$post['category'];
+							$prodata['brand']=$post['brand'];
+							$prodata['price']=$post['price'];
+							$prodata['specification']=$post['specification'];
+							$prodata['unit']=$post['unit'];
+							if($this->productModel->editProduct($productid,$prodata))
+							{
+								$config=['upload_path'=> './assets/files/product',
+								'allowed_types'=>'jpg|gif|png|jpeg',
+								'max_size'=>'10240'];
+								$this->load->library('upload',$config);
+								if(file_exists($_FILES['logo']['tmp_name']))
+								{
+									$filename=rand(100,999).$post['name'].$post['orgid'].getDateTime(2).'logo';
+									$config['file_name'] = $filename;
+
+									$this->upload->initialize($config);
+									$this->load->library('upload',$config);
+									if($this->upload->do_upload('logo'))
+									{									
+
+										$fileAbout=$this->upload->data('logo');
+										$fileinfo=array(
+											'filepath'=>'assets/files/product/'.$fileAbout['orig_name']);
+										if($this->filesModel->updateFile($data['productinfo'][0]['fileid'],$fileinfo))
+										{
+											unlink($data['productinfo'][0]['filepath']);
+										}
+										else
+										{
+											$data['upload_error']='Updating file process has failed';
+											$this->load->view('editproduct',$data);
+										}
+									}
+									else
+									{
+										$data['upload_error']='Uploading file process has failed';
+										$this->load->view('editproduct',$data);
+									}
+								}
+								$this->session->set_flashdata('feedback','Product edited Successfully.');
+								redirect('/Product/showEditProduct/'.$data['productinfo'][0]['id'], 'refresh');
+							}
+							else
+							{
+								$this->load->view('editproduct',$data);
+							}
+						}
+					}
+					else
+					{
+						redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+					}
+				}
+				else
+				{
+					redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+				}
+			}
+			else
+			{
+				redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+			}
+		}
+		else
+		{
+			redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+		}
 	}
 	
 
@@ -176,7 +274,28 @@ class Product extends MY_Controller {
 	
 	public function delete()
 	{
-		
+		$id=$this->uri->segment(3);
+		$proinfo=$this->productModel->getProductInfoAll('id',$id);
+		$orginfo=$this->organizationModel->getOrganizationInfoAll('id',$proinfo[0]['organizationid']);
+		if($this->productModel->deleteProduct('id',$id))
+		{
+			$imagelist=$this->filesModel->getAllPhotos($id,'product');
+			foreach ($imagelist as $key) {
+				unlink($key['filepath']);
+			}
+			if($this->filesModel->deleteFile('fileholder',$id,'product'))
+			{
+				redirect('/Organization/index/'.$orginfo[0]['name'], 'refresh');
+			}
+			else
+			{
+				redirect('/Organization/index/'.$orginfo[0]['name'], 'refresh');
+			}
+		}
+		else
+		{
+			redirect('/Organization/index/'.$orginfo[0]['name'], 'refresh');
+		}
 	}
 
 	public function __construct() {

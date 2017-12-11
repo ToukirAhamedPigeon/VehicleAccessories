@@ -11,7 +11,11 @@ class userModel extends MY_Model{
 	
 	public function getUserListAll()
 	{
-		 
+		  $this->db->select('*');
+		  $this->db->from('user');
+       $this->db->join('files', 'user.id=files.fileholder AND files.holdertype="user" AND filestatus="profile"', 'left');
+       $result = $this->db->get();
+       return $result->result_array();
 	}
 	
 	public function getUserList($key,$value)

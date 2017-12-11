@@ -98,6 +98,15 @@ class Basic_model extends CI_Model
         $result = $this->db->get();
         return $result->num_rows();
     }
+
+    public function getAllRecordsFrom($tableName,$filetype)
+    {
+         $this->db->select('*');
+          $this->db->from($tableName);
+       $this->db->join('files',$tableName.'.id=files.fileholder AND files.holdertype="'.$tableName.'" AND filestatus="'.$filetype.'"', 'left');
+       $result = $this->db->get();
+       return $result->result_array();
+    }
 }
 
 ?>

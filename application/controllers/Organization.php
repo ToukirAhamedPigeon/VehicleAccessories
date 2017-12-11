@@ -4,13 +4,12 @@ class Organization extends MY_Controller {
 
 	public function index()
 	{
-		if($this->valid_normal()){
-			$this->load->view('organizationprofile');
-		}
-		else
-		{
-			redirect('/Home/showlogin', 'refresh');
-		}
+		$orgname = $this->uri->segment(3);
+		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+		$data['org_info']=$this->organizationModel->getOrganizationInfoAll('name',$orgname);
+		$data['productlist']=$this->productModel->getProductInfoAll('organizationid',$data['org_info'][0]['id']);
+		$data['imagelist']=$this->filesModel->getPhotos($data['org_info'][0]['id'],'organization');
+		$this->load->view('organizationprofile',$data);
 	}
 	
 	private function valid_normal()
@@ -73,7 +72,7 @@ class Organization extends MY_Controller {
 					'allowed_types'=>'jpg|gif|png|jpeg',
 					'max_size'=>'10240'];
 					$this->load->library('upload',$config);
-					if(isset($_FILES['logo']))
+					if(file_exists($_FILES['logo']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].getDateTime(2).'logo';
 						$config['file_name'] = $filename;
@@ -88,7 +87,7 @@ class Organization extends MY_Controller {
 							$this->filesModel->uploadFile($fileinfo);
 						}
 					}
-					if(isset($_FILES['imagebox1']))
+					if(file_exists($_FILES['imagebox1']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].getDateTime(2).'image1';
 						$config['file_name'] = $filename;
@@ -103,7 +102,7 @@ class Organization extends MY_Controller {
 							$this->filesModel->uploadFile($fileinfo);
 						}
 					}
-					if(isset($_FILES['imagebox2']))
+					if(file_exists($_FILES['imagebox2']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].getDateTime(2).'image2';
 						$config['file_name'] = $filename;
@@ -118,7 +117,7 @@ class Organization extends MY_Controller {
 							$this->filesModel->uploadFile($fileinfo);
 						}
 					}
-					if(isset($_FILES['imagebox3']))
+					if(file_exists($_FILES['imagebox3']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].getDateTime(2).'image3';
 						$config['file_name'] = $filename;
@@ -133,7 +132,7 @@ class Organization extends MY_Controller {
 							$this->filesModel->uploadFile($fileinfo);
 						}
 					}
-					if(isset($_FILES['imagebox4']))
+					if(file_exists($_FILES['imagebox4']['tmp_name']))
 					{
 						$filename=rand(100,999).$post['name'].getDateTime(2).'image4';
 						$config['file_name'] = $filename;
@@ -167,8 +166,6 @@ class Organization extends MY_Controller {
 				{
 					$data['orginfo']=$organizationinfo;
 					$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
-					// echo "<pre>";
-					// print_r($data); die();
 					$this->load->view('editorganization',$data);
 				}
 				else
@@ -207,8 +204,9 @@ class Organization extends MY_Controller {
 						}
 						else
 						{
+							$data['orginfo']=$organizationinfo;
 							$post=$this->input->post();
-							$orgdata['id']=$$organizationinfo[0]['id'];
+							$orgdata['id']=$organizationinfo[0]['id'];
 							$orgdata['name']=$post['name'];
 							$orgdata['website']=$post['website'];
 							$orgdata['latitude']=$post['latitude'];
@@ -225,13 +223,59 @@ class Organization extends MY_Controller {
 							$orgdata['email']=$post['email'];
 							if($this->organizationModel->editOrganization($orgdata))
 							{
-								echo 'something';
+								$config=['upload_path'=> './assets/files/organization',
+								'allowed_types'=>'jpg|gif|png|jpeg',
+								'max_size'=>'10240'];
+								$this->load->library('upload',$config);
+								if(file_exists($_FILES['logo']['tmp_name']))
+								{
+									$filename=rand(100,999).$post['name'].getDateTime(2).'logo';
+									$config['file_name'] = $filename;
+
+									$this->upload->initialize($config);
+									$this->load->library('upload',$config);
+									if($this->upload->do_upload('logo'))
+									{									
+
+										$fileAbout=$this->upload->data('logo');
+										$fileinfo=array(
+											'filepath'=>'assets/files/organization/'.$fileAbout['orig_name']);
+										if($this->filesModel->updateFile($data['orginfo'][0]['fileid'],$fileinfo))
+										{
+											unlink($data['orginfo'][0]['filepath']);
+										}
+										else
+										{
+											$data['upload_error']='Updating file process has failed';
+											$data['orginfo']=$organizationinfo;
+											$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+											$this->load->view('editorganization',$data);
+										}
+									}
+									else
+									{
+										$data['upload_error']='Uploading file process has failed';
+
+										$data['orginfo']=$organizationinfo;
+										$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+										$this->load->view('editorganization',$data);
+									}
+								}
+
+								$this->session->set_flashdata('feedback','Organization edited Successfully.');
+								redirect('/Organization/showEditOrganization/'.$data['orginfo'][0]['name'], 'refresh');
 							}
 							else
 							{
-								echo 'anything';
+								$data['orginfo']=$organizationinfo;
+								$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
+								$this->load->view('editorganization',$data);
 							}
 						}
+					}
+					else
+					{
+						redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
 					}
 				}
 				else
@@ -265,6 +309,7 @@ class Organization extends MY_Controller {
 		parent::__construct();
 		$this->load->model('userModel');
 		$this->load->model('organizationModel');
+		$this->load->model('productModel');
 		if(!$this->session->userdata('userid'))
 		{
 			redirect('/Home/showlogin', 'refresh');

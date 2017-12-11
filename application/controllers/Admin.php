@@ -90,7 +90,7 @@ class Admin extends MY_Controller {
 	
 	public function deleteUser()
 	{
-		
+		$userid=$this->uri->segment(3);
 	}
 	
 		
@@ -101,6 +101,7 @@ class Admin extends MY_Controller {
 	
 	public function deleteOrganization()
 	{
+		$id=$this->uri->segment(3);
 		
 	}
 	
@@ -167,5 +168,9 @@ class Admin extends MY_Controller {
 				redirect('/Home/showlogin', 'refresh');
 			}
 		}
+		$this->load->model('userModel');
+		$this->load->model('organizationModel');
+		$this->load->model('productModel');
+		$this->load->model('filesModel');
     }
 }

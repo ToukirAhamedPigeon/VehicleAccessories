@@ -11,7 +11,7 @@ class User extends MY_Controller {
 		}
 		$data['user_info']=$this->userModel->getUserInfoAll('user.username',$data['username']);
 		$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
-		$data['orglist']=$this->organizationModel->getOrganizationInfoAll('ownerid',$this->session->userdata('userid'));
+		$data['orglist']=$this->organizationModel->getOrganizationInfoAll('ownerid',$data['user_info'][0]['id']);
 		$this->load->view('userprofile',$data);
 	}
 	public function logout()

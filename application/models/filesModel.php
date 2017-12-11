@@ -3,7 +3,15 @@ class filesModel extends MY_Model{
 	
 	public function getPhotos($id,$holdertype)
 	{
-		
+			$this->db->select('*');
+		$result = $this->db->get_where('files',array('fileholder' =>$id, 'holdertype'=>$holdertype, 'filestatus'=>'image'));
+		return $result->result_array();
+	}
+	public function getAllPhotos($id,$holdertype)
+	{
+			$this->db->select('*');
+		$result = $this->db->get_where('files',array('fileholder' =>$id, 'holdertype'=>$holdertype));
+		return $result->result_array();
 	}
 	public function getCoverPhoto($id,$holdertype)
 	{
@@ -19,8 +27,8 @@ class filesModel extends MY_Model{
 		$this->db->where('fileid', $fileid);
        return $this->db->update('files', $data); 
 	}
-	public function deleteFile($fileid)
+	public function deleteFile($field,$value,$holdertype)
 	{
-		
+		return $this->db->delete('files', array($field => $value,'holdertype'=>$holdertype)); 
 	}
 }

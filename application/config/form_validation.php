@@ -371,7 +371,7 @@ array(
     array(
       'field' => 'name',
       'label' => 'Organization Name',
-      'rules' => 'required|alpha_numeric|trim|is_unique[organization.name]'
+      'rules' => 'required|alpha_numeric|trim'
     ),
     array(
       'field' => 'phone',
@@ -392,6 +392,38 @@ array(
       'field' => 'website',
       'label' => 'Website',
       'rules' => 'valid_url'
+    )
+  ),
+   'editProduct'=>array(
+    array(
+      'field' => 'category',
+      'label' => 'Category',
+      'rules' => 'required'
+    ),
+    array(
+      'field' => 'brand',
+      'label' => 'Brand',
+      'rules' => 'required'
+    ),
+    array(
+      'field' => 'unit',
+      'label' => 'Unit',
+      'rules' => 'required'
+    ),
+    array(
+      'field' => 'name',
+      'label' => 'Product Name',
+      'rules' => 'required|alpha_numeric|trim'
+    ),
+    array(
+      'field' => 'price',
+      'label' => 'Price',
+      'rules' => 'required|numeric|trim'
+    ),
+    array(
+      'field' => 'orgid',
+      'label' => 'Orgid',
+      'rules' => 'required'
     )
   )
 );

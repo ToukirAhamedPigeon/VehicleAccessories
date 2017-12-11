@@ -14,8 +14,13 @@ class Search extends MY_Controller {
 			$post=$this->input->post();
 			$this->session->set_userdata('activesearch',$post['searching']);
 		}
-		//$this->session->set_userdata('activesearch',);
 		$data['activesearch']=$this->session->userdata('activesearch');
+		$data['users']=$this->basic_model->getAllRecordsFrom('user','profile');
+		$data['productlistpo
+		']=$this->basic_model->getAllRecordsFrom('product','logo');
+		$data['brands']=$this->basic_model->getAllRecordsFrom('brand','logo');
+		$data['orglist']=$this->basic_model->getAllRecordsFrom('organization','logo');
+
 		$this->load->view('search',$data);
 	}
 	
@@ -51,6 +56,9 @@ class Search extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('userModel');
+		$this->load->model('productModel');
+		$this->load->model('organizationModel');
+		$this->load->model('brandModel');
 	}
 	
 }
