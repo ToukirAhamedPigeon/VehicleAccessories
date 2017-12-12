@@ -12,15 +12,33 @@ class Search extends MY_Controller {
 		if($_POST)
 		{
 			$post=$this->input->post();
-			$this->session->set_userdata('activesearch',$post['searching']);
+			$searchAll=$post['searchAll'];
+			if($searchAll!='')
+			{
+				$this->session->set_userdata('activesearch',$post['searching']);
+				$data['activesearch']=$this->session->userdata('activesearch');
+				$data['users']=$this->userModel->like($searchAll);
+				$data['productlist']=$this->productModel->like($searchAll);
+				$data['brands']=$this->brandModel->like($searchAll);
+				$data['orglist']=$this->organizationModel->like($searchAll);
+			}
+			else
+			{
+				$data['activesearch']=$this->session->userdata('activesearch');
+				$data['users']=$this->basic_model->getAllRecordsFrom('user','profile');
+				$data['productlist']=$this->basic_model->getAllRecordsFrom('product','logo');
+				$data['brands']=$this->basic_model->getAllRecordsFrom('brand','logo');
+				$data['orglist']=$this->basic_model->getAllRecordsFrom('organization','logo');
+			}
 		}
-		$data['activesearch']=$this->session->userdata('activesearch');
-		$data['users']=$this->basic_model->getAllRecordsFrom('user','profile');
-		$data['productlistpo
-		']=$this->basic_model->getAllRecordsFrom('product','logo');
-		$data['brands']=$this->basic_model->getAllRecordsFrom('brand','logo');
-		$data['orglist']=$this->basic_model->getAllRecordsFrom('organization','logo');
-
+		else
+		{
+			    $data['activesearch']=$this->session->userdata('activesearch');
+				$data['users']=$this->basic_model->getAllRecordsFrom('user','profile');
+				$data['productlist']=$this->basic_model->getAllRecordsFrom('product','logo');
+				$data['brands']=$this->basic_model->getAllRecordsFrom('brand','logo');
+				$data['orglist']=$this->basic_model->getAllRecordsFrom('organization','logo');
+		}
 		$this->load->view('search',$data);
 	}
 	

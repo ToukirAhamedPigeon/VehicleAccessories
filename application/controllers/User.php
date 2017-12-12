@@ -170,7 +170,11 @@ public function changePassword()
 
 public function deactivate()
 {
-     
+	$id=$this->session->userdata['userid'];
+	if($this->basic_model->changeStatus('user','id',$id,'deactivate'))
+	{
+		redirect('/User/logout', 'refresh');
+	}
 }
 
 public function activate()

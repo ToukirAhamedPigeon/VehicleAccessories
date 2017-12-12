@@ -13,8 +13,11 @@ class filesModel extends MY_Model{
 		$result = $this->db->get_where('files',array('fileholder' =>$id, 'holdertype'=>$holdertype));
 		return $result->result_array();
 	}
-	public function getCoverPhoto($id,$holdertype)
+	public function getSinglePhoto($id)
 	{
+			$this->db->select('*');
+		$result = $this->db->get_where('files',array('fileid' =>$id));
+		return $result->result_array();
 		
 	}
 	

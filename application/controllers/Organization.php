@@ -295,14 +295,94 @@ class Organization extends MY_Controller {
 	}
 
 
-	public function deactivate($id)
+	public function deactivate()
 	{
-
+		$id=$this->uri->segment(3);
+		$organizationinfo=$this->organizationModel->getOrganizationInfoAll('id',$id);
+		if($organizationinfo[0]['ownerid']==$this->session->userdata('userid'))
+		{
+			$this->basic_model->changeStatus('organization','id',$id,'deactivate');
+			redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+		}
+		else
+		{
+			redirect('/User/logout', 'refresh');
+		}
 	}
 
 	public function activate()
 	{
+		$id=$this->uri->segment(3);
+		$organizationinfo=$this->organizationModel->getOrganizationInfoAll('id',$id);
+		if($organizationinfo[0]['ownerid']==$this->session->userdata('userid'))
+		{
+			$this->basic_model->changeStatus('organization','id',$id,'active');
+			redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+		}
+		else
+		{
+			redirect('/User/logout', 'refresh');
+		}
+	}
 
+	public function insertFile()
+	{
+		if($_POST)
+		{
+			$post=$this->input->post();
+			$config=['upload_path'=> './assets/files/organization',
+			'allowed_types'=>'jpg|gif|png|jpeg',
+			'max_size'=>'10240'];
+			$this->load->library('upload',$config);
+			if(file_exists($_FILES['imagebox1']['tmp_name']))
+			{
+				$data['fileholder']=$post['fileholder'];
+				$data['filestatus']='image';
+				$data['holdertype']='organization';
+				$filename=rand(100,999).$post['name'].$post['orgid'].getDateTime(2).'image';
+				$config['file_name'] = $filename;
+
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('imagebox1'))
+				{
+					$organizationinfo=$this->organizationModel->getOrganizationInfoAll('id',$data['fileholder']);
+					$fileAbout=$this->upload->data('imagebox1');
+					$fileinfo=array('fileholder'=>$data['fileholder'],'filestatus'=>'image',
+						'filepath'=>'assets/files/organization/'.$fileAbout['orig_name'],'holdertype'=>'organization');
+					$this->filesModel->uploadFile($fileinfo);
+					redirect('/Organization/index/'.$organizationinfo[0]['name'], 'refresh');
+				}
+				else
+				{
+					redirect('/Organization/index/'.$organizationinfo[0]['name'], 'refresh');
+				}
+			}
+		}
+	}
+
+	public function deleteFile()
+	{
+		$orgid=$this->uri->segment(3);
+		$fileid=$this->uri->segment(4);
+		$data['organizationinfo']=$this->organizationModel->getOrganizationInfoAll('id',$orgid);
+
+		if($this->session->userdata('userid')==$data['organizationinfo'][0]['ownerid'])
+		{
+			$filinfo=$this->filesModel->getSinglePhoto($fileid);
+			if($this->filesModel->deleteFile('fileid',$fileid,'product'))
+			{
+				unlink($filinfo[0]['filepath']);
+				redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+			}
+			else
+			{
+				redirect('/User/index/'.$this->session->userdata['username'], 'refresh');
+			}
+		}
+		else
+		{
+			redirect('/User/logout', 'refresh');
+		}
 	}
 
 	public function __construct() {

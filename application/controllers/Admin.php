@@ -93,7 +93,7 @@ class Admin extends MY_Controller {
 		$userid=$this->uri->segment(3);
 	}
 	
-		
+	
 	public function showDeleteOrganization($id)
 	{
 		$this->load->view('Admin/deleteorganization');
@@ -101,7 +101,6 @@ class Admin extends MY_Controller {
 	
 	public function deleteOrganization()
 	{
-		$id=$this->uri->segment(3);
 		
 	}
 	
@@ -122,13 +121,21 @@ class Admin extends MY_Controller {
 	
 	public function ban()
 	{
-		
+		$table=$this->uri->segment(3);
+		$id=$this->uri->segment(4);
+		if($this->basic_model->changeStatus($table,'id',$id,'ban'))
+		{
+			redirect('/Search/index', 'refresh');
+		}
 	}
 	
-		
+	
 	public function unban()
 	{
-		
+		$table=$this->uri->segment(3);
+		$id=$this->uri->segment(4);
+		$this->basic_model->changeStatus($table,'id',$id,'active');
+		redirect('/Search/index', 'refresh');
 	}
 	
 	public function getBanlist($type)
@@ -153,11 +160,14 @@ class Admin extends MY_Controller {
 	
 	public function confirmOrganization()
 	{
-		
+		$id=$this->uri->segment(3);
+		$this->basic_model->changeStatus('organization','id',$id,'active');
+		redirect('/Search/index', 'refresh');
 	}
+
 	public function __construct() {
 		parent::__construct();
-       	if(!$this->session->userdata('userid')||!$this->session->userdata('usertype'))
+		if(!$this->session->userdata('userid')||!$this->session->userdata('usertype'))
 		{
 			redirect('/Home/showlogin', 'refresh');
 		}
@@ -172,5 +182,5 @@ class Admin extends MY_Controller {
 		$this->load->model('organizationModel');
 		$this->load->model('productModel');
 		$this->load->model('filesModel');
-    }
+	}
 }

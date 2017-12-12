@@ -4,6 +4,8 @@
   <head>
     <title>Add Organization</title>
     <?php include('bundle.php');?>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/map-icons@3.0.3/dist/css/map-icons.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/map-icons@3.0.3/dist/js/map-icons.min.js"></script>
   </head>
   <body class="font">
   <div class="container topmargin slideup">
@@ -162,6 +164,23 @@
         <?php echo form_input(['name'=>'street','id'=>'inputStreet','class'=>'form-control','placeholder'=>'Street','value'=>set_value('street')]);?>
       </div>
     </div>
+    <div class="form-group">
+      <label for="inputStreet" class="col-lg-2 control-label">Select Your Location</label>
+      <div class="col-lg-10">
+        <div class="form-control" style="height: 315px; width: 100%">
+
+
+
+        <?php include('map.php');?>
+
+
+
+
+
+
+      </div>
+      </div>
+    </div>
     <div class="errrow">
       <div class="col-lg-2"></div>
       <div class="col-lg-10"><p class="white" id="streetErr" >*</p></div>
@@ -170,7 +189,7 @@
     <div class="form-group">
       <label for="inputLatitude" class="col-lg-2 control-label">Latitude</label>
       <div class="col-lg-10">
-        <?php echo form_input(['name'=>'latitude','id'=>'inputLatitude','class'=>'form-control','placeholder'=>'Latitude','value'=>set_value('latitude')]);?>
+        <?php echo form_input(['name'=>'latitude','id'=>'inputLatitude', 'class'=>'form-control','placeholder'=>'Latitude','value'=>set_value('latitude')]);?>
       </div>
     </div>
      <div class="errrow">

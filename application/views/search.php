@@ -34,9 +34,13 @@
 								<th>Price</th>
 								<th>Specification</th>
 								<th>Rating</th>';
-								if($this->session->userdata('userid') !== null || $this->session->userdata('usertype')== 'admin'){
-									echo '<th>Options</th>';
-								};
+								if($this->session->userdata('userid') !== null){
+									if(isset($current_user_info[0]['type'])){
+										if($current_user_info[0]['type'] == 'admin')
+											echo '<th>Options</th>';
+									}
+									
+								}
 
 								echo '
 							</tr>
@@ -49,7 +53,7 @@
 								<td>' . $count++; echo "</td>
 								<td> <img style='width:100px;height:100px' src='" . base_url(). $key['filepath'] . "'></td>
 								<td>"."Name : <a href='".base_url()."Product/index/".$key['id'] ."'>". $key['name']."</a><br> Category : ".$key['category']."<br> Brand : ". $key['brand'] . "<br> Date Added : ". $key['dateadded'] ."</td>
-								<td>" . $key['price']. ' per '. $key['unit'] . "</td>
+								<td>TK " . $key['price']. ' per '. $key['unit'] . "</td>
 								<td><a data-toggle='modal' data-target='#modalspec".$count."'>Click Here for Specification</a></td>
 								<td>" . $key['rate'];
 								 echo '
@@ -60,12 +64,13 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Specification</h4>
+					<h4 class="modal-title">Specification of '. $key['name'] .'</h4>
 				</div>
 				<div class="modal-body">
 					<p>'. $key['specification'] .'</p>
 				</div>
 				<div class="modal-footer">
+
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -74,11 +79,40 @@
 	</div>
 								 ';
 								 echo "</td>";
-								if($this->session->userdata('usertype')== 'admin'){
-									echo "<td>";
-									echo "<a class='btn btn-primary' href='".base_url()."Organization/deactivate/".$key['id']."'>Delete</a>";
-								echo "</td>";
+							if($this->session->userdata('userid') !== null){	
+								if(isset($current_user_info[0]['type'])){
+										if($current_user_info[0]['type'] == 'admin'){
+											echo "<td>";
+											echo "<a class='btn btn-primary' data-toggle='modal' data-target='#productdel".$count."'>Delete</a>";
+											echo '
+								 <div class="modal fade" id="productdel'.$count.'" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Delete :  '. $key['name'] .'</h4>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure want to delete?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+					<a href="'.base_url().'Product/delete/'.$key['id'].'"><button type="button" class="btn btn-primary" id="modal-btn-si">Yes</button></a>
+					
+				</div>
+			</div>
+
+		</div>
+	</div>
+								 ';
+											echo "</td>";
+										}
+									}
 								}
+							
+							
 							echo "</tr>";
 						}
 						echo "</tbody>
@@ -108,8 +142,10 @@
 								<th>Address</th>
 								<th>Contact</th>
 								<th>Rating</th>';
-								if($this->session->userdata('userid') !== null || $this->session->userdata('usertype')== 'admin'){
-									echo '<th>Options</th>';
+								if($this->session->userdata('userid') !== null){
+									if(isset($current_user_info[0]['type']))
+										if($current_user_info[0]['type'] == 'admin')
+										echo '<th>Options</th>';
 								}; echo '
 							</tr>
 						</thead>
@@ -125,11 +161,16 @@
 								<td>" . $key['phone'] ."</td>
 								<td>" . $key['rate'] ."</td>";
 								
-								if($this->session->userdata('usertype')== 'admin'){
+								if(isset($current_user_info[0]['type'])){
+										if($current_user_info[0]['type'] == 'admin'){
 									echo "<td>";
-									
-									if($key['status'] != 'unban'){
-									 	echo "<a class='btn btn-danger' data-toggle='modal' data-target='#banOrg".$count."'>Ban</a> &nbsp";
+									if($key['status'] == 'not approved'){
+											echo "<a class='btn btn-danger' href='".base_url()."Admin/confirmOrganization/".$key['id']."' >Confirm</a> &nbsp";
+											
+										}
+									else if($key['status'] == 'active'){
+									 	
+									 	echo "<a class='btn btn-primary' data-toggle='modal' data-target='#banOrg".$count."'>Ban</a> &nbsp";
 									 	echo '
 															 <div class="modal fade" id="banOrg'.$count.'" role="dialog">
 									<div class="modal-dialog">
@@ -141,10 +182,11 @@
 												<h4 class="modal-title">Specification</h4>
 											</div>
 											<div class="modal-body">
-												<p>Are you sure want to Ban this organisation?</p>
+												<p>Are you sure want to Ban this organization?</p>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+												<a href="'.base_url().'Admin/ban/organization/'.$key['id'].'"><button type="button" class="btn btn-primary" id="modal-btn-si">Yes</button></a>
 											</div>
 										</div>
 
@@ -152,10 +194,11 @@
 								</div>
 															 ';
 									}
-									else if($key['status'] == 'unban')
-										echo "<a class='btn btn-danger' href=''>Unban </a> &nbsp";
-									echo "<a class='btn btn-primary' href='".base_url()."Organization/deactivate/".$key['id']."'>Delete</a>";
+									else if($key['status'] == 'ban')
+										echo "<a class='btn btn-success' href='".base_url()."Admin/unban/organization/".$key['id']."'>Unban </a> &nbsp";
+									
 								echo "</td>";
+							}
 								}
 							echo "</tr>";
 						}
@@ -205,8 +248,10 @@
 								<th>Name</th>
 								<th>Address</th>
 								<th>Contact</th>';
-								if($this->session->userdata('userid') !== null || $$this->session->userdata('usertype')== 'admin'){
-									echo '<th>Options</th>';
+								if($this->session->userdata('userid') !== null){
+									if(isset($current_user_info[0]['type']))
+										if($current_user_info[0]['type'] == 'admin')
+										echo '<th>Options</th>';
 								}; echo '
 							</tr>
 						</thead>
@@ -217,15 +262,16 @@
 							<tr>
 								<td>' . $count++; echo "</td>
 								<td> <img style='width:47px;height:44px' src='" . base_url(). $key['filepath'] . "'></td>
-								<td><a href='".base_url()."Organization/index/".$key['firstname']."'>" . $key['firstname']. ", ". $key['lastname'] . "</a></td>
+								<td><a href='".base_url()."User/index/".$key['firstname']."'>" . $key['firstname']. " ". $key['lastname'] . "</a></td>
 								<td>" . $key['street']. ", ". $key['thana']. ",  ". $key['city'].", ". $key['district'].", ".", ". $key['division'] . "</td>
 								<td>" . $key['phone'] ."</td>";
 								
-								if($this->session->userdata('usertype')== 'admin'){
+								if(isset($current_user_info[0]['type'])){
+										if($current_user_info[0]['type'] == 'admin'){
 									echo "<td>";
 									
-									if($key['status'] != 'unban'){
-									 	echo "<a class='btn btn-danger' data-toggle='modal' data-target='#banOrg".$count."'>Ban</a> &nbsp";
+									if($key['status'] != 'ban'){
+									 	echo "<a class='btn btn-primary' data-toggle='modal' data-target='#banOrg".$count."'>Ban</a> &nbsp";
 									 	echo '
 															 <div class="modal fade" id="banOrg'.$count.'" role="dialog">
 									<div class="modal-dialog">
@@ -234,13 +280,14 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal">&times;</button>
-												<h4 class="modal-title">Specification</h4>
+												<h4 class="modal-title">Ban User</h4>
 											</div>
 											<div class="modal-body">
-												<p>Are you sure want to Ban this organisation?</p>
+												<p>Are you sure want to Ban this User?</p>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+												<a href="'.base_url().'Admin/ban/user/'.$key['id'].'"><button type="button" class="btn btn-primary" id="modal-btn-si">Yes</button></a>
 											</div>
 										</div>
 
@@ -248,10 +295,11 @@
 								</div>
 															 ';
 									}
-									else if($key['status'] == 'unban')
-										echo "<a class='btn btn-danger' href=''>Unban </a> &nbsp";
-									echo "<a class='btn btn-primary' href='".base_url()."Organization/deactivate/".$key['id']."'>Delete</a>";
+									else if($key['status'] == 'ban')
+										echo "<a class='btn btn-success' href='".base_url()."Admin/unban/user/".$key['id']."'>Unban </a> &nbsp";
+									
 								echo "</td>";
+							}
 								}
 							echo "</tr>";
 						}
@@ -262,7 +310,7 @@
 
 					}
 					else
-						echo '<p>No Organisation available for the profile!</p>';
+						echo '<p>No Organization available for the profile!</p>';
 				 ?>
 				</div>
 			</div>

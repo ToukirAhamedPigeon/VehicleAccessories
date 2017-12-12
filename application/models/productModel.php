@@ -62,4 +62,20 @@ class productModel extends MY_Model{
 	{
 		return $this->db->delete('product', array($field => $value));
 	}
+
+	public function like($value)
+	{
+		$this->db->select('*');
+		$this->db->from('product');
+		$this->db->join('files','product.id=files.fileholder AND files.holdertype="product" AND filestatus="logo"', 'left');
+		$this->db->like('product.name',$value);
+		$this->db->or_like('product.category',$value);
+		$this->db->or_like('product.brand',$value);
+		$this->db->or_like('product.price',$value);
+		$this->db->or_like('product.specification',$value);
+		$this->db->or_like('product.rate',$value);
+		$this->db->or_like('product.dateadded',$value);
+		$result = $this->db->get();
+		return $result->result_array();
+	}
 }

@@ -9,6 +9,8 @@ class Home extends MY_Controller {
 			$data['current_user_info']=$this->userModel->getUserInfoAll('user.id',$this->session->userdata('userid'));
 		}
 		$data['activelink']='#homelink';
+		$data['productlist']=$this->basic_model->getAllRecordsFrom('product','logo');
+		$data['orglist']=$this->basic_model->getAllRecordsFrom('organization','logo');
 		$this->load->view('home',$data);
 	}
 
@@ -72,6 +74,7 @@ class Home extends MY_Controller {
 					$type=$user->type;
 					if($post['password']===$password)
 					{
+						$this->basic_model->changeStatus('user','id',$id,'active');
 						$this->session->set_userdata('userid',$id);
 						$this->session->set_userdata('username',$username);
 						$this->session->set_userdata('usertype',$type);

@@ -298,6 +298,73 @@ class Product extends MY_Controller {
 		}
 	}
 
+	public function insertFile()
+	{
+		if($_POST)
+		{
+			$post=$this->input->post();
+			$config=['upload_path'=> './assets/files/product',
+			'allowed_types'=>'jpg|gif|png|jpeg',
+			'max_size'=>'10240'];
+			$this->load->library('upload',$config);
+			if(isset($post['imagebox1']))
+			{
+				$data['fileholder']=$post['fileholder'];
+				$data['filestatus']='image';
+				$data['holdertype']='product';
+				$data['productinfo']=$this->productModel->getProductInfoAll('id',$data['fileholder']);
+				$filename=rand(100,999).$data['productinfo'][0]['name'].$data['productinfo'][0]['organizationid'].getDateTime(2).'image';
+				$config['file_name'] = $filename;
+
+				$this->upload->initialize($config);
+
+				if($this->upload->do_upload('imagebox1'))
+				{
+					$fileAbout=$this->upload->data('imagebox1');
+					//print_r($fileAbout); die();
+					$fileinfo=array('fileholder'=>$id,'filestatus'=>'image',
+						'filepath'=>'assets/files/product/'.$fileAbout['orig_name'],'holdertype'=>'product');
+					$this->filesModel->uploadFile($fileinfo);
+					echo 'ok';
+					//redirect('/Product/index/'.$data['fileholder'], 'refresh');
+				}
+				else
+				{
+					$error = array('error' => $this->upload->display_errors());
+					print_r($error);
+					echo 'not ok';
+					//redirect('/Product/index/'.$data['fileholder'], 'refresh');
+				}
+			}
+		}
+	}
+
+	public function deleteFile()
+	{
+		$proid=$this->uri->segment(3);
+		$fileid=$this->uri->segment(4);
+		$data['productinfo']=$this->productModel->getProductInfoAll('id',$proid);
+		$data['organizationinfo']=$this->organizationModel->getOrganizationInfoAll('id',$data['productinfo'][0]['organizationid']);
+
+		if($this->session->userdata('userid')==$data['organizationinfo'][0]['ownerid'])
+		{
+			$filinfo=$this->filesModel->getSinglePhoto($fileid);
+			if($this->filesModel->deleteFile('fileid',$fileid,'product'))
+			{
+				unlink($filinfo[0]['filepath']);
+				redirect('/Organization/index/'.$data['organizationinfo'][0]['name'], 'refresh');
+			}
+			else
+			{
+				redirect('/Organization/index/'.$data['organizationinfo'][0]['name'], 'refresh');
+			}
+		}
+		else
+		{
+			redirect('/User/logout', 'refresh');
+		}
+	}
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('userModel');

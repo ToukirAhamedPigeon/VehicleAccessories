@@ -107,6 +107,15 @@ class Basic_model extends CI_Model
        $result = $this->db->get();
        return $result->result_array();
     }
+
+    public function changeStatus($tableName,$field,$value,$status)
+    {
+        $data = array(
+               'status' => $status
+            );
+        $this->db->where($field, $value);
+       return $this->db->update($tableName, $data); 
+    }
 }
 
 ?>

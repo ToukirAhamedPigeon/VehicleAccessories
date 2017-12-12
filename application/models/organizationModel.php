@@ -65,4 +65,27 @@ class organizationModel extends MY_Model{
 	{
 		
 	}
+
+	public function like($value)
+	{
+		$this->db->select('*');
+		$this->db->from('organization');
+		$this->db->join('files','organization.id=files.fileholder AND files.holdertype="organization" AND filestatus="logo"', 'left');
+		$this->db->like('organization.name',$value);
+		$this->db->or_like('organization.startdate',$value);
+		$this->db->or_like('organization.about',$value);
+		$this->db->or_like('organization.rate',$value);
+		$this->db->or_like('organization.phone',$value);
+		$this->db->or_like('organization.street',$value);
+		$this->db->or_like('organization.thana',$value);
+		$this->db->or_like('organization.district',$value);
+		$this->db->or_like('organization.division',$value);
+		$this->db->or_like('organization.country',$value);
+		$this->db->or_like('organization.rules',$value);
+		$this->db->or_like('organization.city',$value);
+		$this->db->or_like('organization.email',$value);
+		$this->db->or_like('organization.website',$value);
+		$result = $this->db->get();
+		return $result->result_array();
+	}
 }

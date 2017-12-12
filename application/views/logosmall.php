@@ -19,7 +19,7 @@
 				</ul>
 				<form action=<?php echo($host."Search");?> class="navbar-form navbar-left" method="post" role="search">
 					<div class="form-group">
-						<input type="text" id="searchAll" class="form-control" placeholder="Search">
+						<input type="text" id="searchAll" name="searchAll" class="form-control" placeholder="Search">
 					</div>
 					<input type="hidden" name="searching" id="searching" value="Product">
 					<button type="submit" class="btn btn-default">Search</button>
@@ -39,10 +39,10 @@
 							<li><a data-toggle='modal' data-target='#deactivateModal' >Account Deactivate</a></li>
 							</ul>
 							</li>
-							<li><a id='messagelink' data-toggle='modal' data-target='#messageModal' class='logolink'><div class=''>
+					<!--		<li><a id='messagelink' data-toggle='modal' data-target='#messageModal' class='logolink'><div class=''>
 							<span class='glyphicon glyphicon-globe'></span>
 							<span class='badge' id='totalmessage'></span>
-							</div></a></li>
+							</div></a></li>  -->
 
 							<li style=><a id='profilelink' href='".$host."User/index/".$current_user_info[0]['username']."'class='logolink'>".$current_user_info[0]['title'].". ".$current_user_info[0]['firstname']."</a></li>
 							<li style=''><img src='".$host.$current_user_info[0]['filepath']."'style='height:50px; width:58px; border-left: 4px solid #3b3b3b;  border-right: 4px solid #3b3b3b; background-color:white;'/></li>
@@ -87,14 +87,15 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Modal Header</h4>
+					<h4 class="modal-title">Deactive Account</h4>
 				</div>
 				<div class="modal-body">
-					<p>Some text in the modal.</p>
+					<p>Are you sure want to deactive?</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
+												<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+												<a href="<?= base_url().'User/deactivate'?>"><button type="button" class="btn btn-primary" id="modal-btn-si">Yes</button></a>
+											</div>
 			</div>
 
 		</div>

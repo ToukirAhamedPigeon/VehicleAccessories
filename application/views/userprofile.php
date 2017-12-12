@@ -78,8 +78,38 @@
 								if($this->session->userdata('userid') == $user_info[0]['id']){
 									echo "<td>";
 									echo "<a class='btn btn-danger' href='".base_url()."Organization/showEditOrganization/".$key['name']."'>EDIT</a> &nbsp";
-									echo "<a class='btn btn-primary' href='".base_url()."Organization/deactivate/".$key['id']."'>Deactivate</a>";
+									if($key['status'] == 'active'){
+										echo "<a class='btn btn-primary' data-toggle='modal' data-target='#deactivOrg".$count."'>Deactivate</a>";
+									echo '
+															 <div class="modal fade" id="deactivOrg'.$count.'" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Deactivate The Organization</h4>
+											</div>
+											<div class="modal-body">
+												<p>Are you sure want to deactivate this organization?</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+												<a href="'.base_url().'Organization/deactivate/'.$key['id'].'"><button type="button" class="btn btn-primary" id="modal-btn-si">Yes</button></a>
+											</div>
+										</div>
+
+									</div>
+								</div>
+															 ';
 								echo "</td>";
+									}
+									else if ($key['status'] == 'deactivate'){
+										echo "<a href='".base_url().'Organization/activate/'.$key['id']."'' class='btn btn-success' >Activate</a>";
+									
+								echo "</td>";
+									}
+									
 							}
 								else if($current_user_info[0]['type'] == 'admin'){
 									echo "<td>";
@@ -94,13 +124,14 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal">&times;</button>
-												<h4 class="modal-title">Specification</h4>
+												<h4 class="modal-title">Ban The Organization</h4>
 											</div>
 											<div class="modal-body">
 												<p>Are you sure want to Ban this organisation?</p>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+												<a href=“'.base_url().'Product/delete/'.$key['id'].'”><button type="button" class="btn btn-primary" id="modal-btn-si">Yes</button></a>
 											</div>
 										</div>
 
@@ -110,7 +141,7 @@
 									}
 									else if($key['status'] == 'unban')
 										echo "<a class='btn btn-danger' href=''>Unban </a> &nbsp";
-									echo "<a class='btn btn-primary' href='".base_url()."Organization/deactivate/".$key['id']."'>Delete</a>";
+									
 								echo "</td>";
 								}
 							echo "</tr>";
